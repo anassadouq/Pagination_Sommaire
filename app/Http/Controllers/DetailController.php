@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Detail;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreDetailRequest;
 use App\Http\Requests\UpdateDetailRequest;
+
+use PDF;
 
 class DetailController extends Controller
 {
@@ -75,11 +79,14 @@ class DetailController extends Controller
         $details = Detail::where('id_client', $clientId)->get();
         return view('detail.debitage', compact('client', 'details'));
     }
-
-    public function allDebitage($clientId)
+    
+    public function downloadPDF()
     {
-        $client = Client::find($clientId);        
-        $details = Detail::where('id_client', $clientId)->get();
-        return view('detail.All_Debitage', compact('client', 'details'));
+        $client = Client::all();
+        $details = Detail::all()->toArray();
+        $pdf = PDF::loadView('detail.show', compact('client', 'details'))->setPaper('a4', 'landscape');
+        return $pdf->download('post.pdf');
     }
+    
+    
 }

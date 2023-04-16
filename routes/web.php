@@ -21,3 +21,5 @@ Route::resource('detail',DetailController::class);
 Route::get('/debitage/{clientId}', [DetailController::class, 'debitage']);
 
 Route::get('/allDebitage/{clientId}', [DetailController::class, 'allDebitage']);
+
+Route::get('download-pdf', [DetailController::class, 'downloadPDF']);
