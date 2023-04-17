@@ -80,13 +80,10 @@ class DetailController extends Controller
         return view('detail.debitage', compact('client', 'details'));
     }
     
-    public function downloadPDF()
+    public function allDebitage($clientId)
     {
-        $client = Client::all();
-        $details = Detail::all()->toArray();
-        $pdf = PDF::loadView('detail.show', compact('client', 'details'))->setPaper('a4', 'landscape');
-        return $pdf->download('post.pdf');
-    }
-    
-    
+        $client = Client::find($clientId);        
+        $details = Detail::where('id_client', $clientId)->get();
+        return view('detail.All_Debitage', compact('client', 'details'));
+    }   
 }

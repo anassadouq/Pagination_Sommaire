@@ -84,7 +84,7 @@
         @foreach ($details as $detail)
             <tr>
                 <td class="bg-danger">ETAGERS</td>
-                @if($detail->image == "caisson1.png")
+                @if($detail->image == "caisson2.png")
                     <td>{{$detail->largeur - $client->eppMat - $client->eppMat - 0.1}}</td>
                     <td>{{$detail->profondeur - 2 -  $client->eppDer - 0.5}}</td>
                     <td>{{$detail->qte}}</td>
