@@ -1,20 +1,44 @@
+@auth
 <html>
 <head>
 	<title>Create Client</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-	<h1>Create Client</h1>
+	<style>
+		label{
+			font-weight:bold;
+		}
+		input{
+			width:350px;
+		}
+	</style>
     <form method="POST" action="{{ route('client.store') }}">
-        @csrf
-		<label for="nom">Nom : </label>
-		<input type="text" id="nom" name="nom" required>
-		<label for="lieu">Lieu : </label>
-		<input type="text" id="lieu" name="lieu" required>
-		<label for="eppMat">EPP Mat : </label>
-		<input type="text" id="eppMat" name="eppMat" required>
-		<label for="eppDer">EPP Der : </label>
-		<input type="text" id="eppDer" name="eppDer" required>
-		<button type="submit">Create Client</button>
+	 	<center>
+			<table>
+				@csrf
+				<tr>
+					<td><label for="nom">Nom : </label></td>
+					<td><input type="text" placeholder="Nom Client" name="nom" required class="my-4"></td>
+				</tr>
+				<tr>
+					<td><label for="lieu">Lieu : </label></td>
+					<td><input type="text" placeholder="Lieu Client" name="lieu" required class="my-4"></td>
+				</tr>
+				<tr>
+					<td><label for="eppMat">EPP Matiére : </label></td>
+					<td><input type="text" placeholder="Eppesseur Matiére" name="eppMat" required class="my-4"></td>
+				</tr>
+				<tr>
+					<td><label for="eppDer">Eppesseur Derriére : </label></td>
+					<td>
+						<input type="text" placeholder="Eppesseur Derriére" id="eppDer" name="eppDer" required class="my-4">
+						<button type="submit" class="btn btn-primary mx-2">Create Client</button>
+					</td>
+				</tr>
+			</table>
+		</center>		
 	</form>
 </body>
 </html>
+@endauth

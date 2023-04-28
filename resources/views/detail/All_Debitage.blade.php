@@ -1,3 +1,7 @@
+@auth
+@extends('layouts.app')
+@section('content')
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
@@ -60,9 +64,9 @@
                     <td>{{$detail->qte * 2}}</td>
                 @endif
                 @if($detail->image == "caisson7(Haut).png")
-                    <td>{{$detail->hauteur}}</td>
+                    <td>{{$detail->largeur - $client->eppMat *2}}</td>
                     <td>{{$detail->profondeur}}</td>
-                    <td>{{$detail->qte *2}}</td>
+                    <td>{{$detail->qte * 2}}</td>
                 @endif
             </tr>
         @endforeach
@@ -165,3 +169,5 @@
 <h4><a href="{{ route('client.index') }}" class="mx-5">
     <span class="material-symbols-outlined">undo</span><span>Go Back</span>
 </a></h4><br><br>
+@endsection
+@endauth

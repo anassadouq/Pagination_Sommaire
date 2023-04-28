@@ -13,12 +13,12 @@ return new class extends Migration
             $table->foreign('id_client')->references('id')->on('clients')->onUpdate('cascade')->onDelete('cascade');
             $table->string('image')->nullable();
             $table->string('position');
-            $table->integer('hauteur');
-            $table->integer('largeur');
-            $table->integer('profondeur');
+            $table->float('hauteur');
+            $table->float('largeur');
+            $table->float('profondeur');
             $table->integer('qte');
             $table->timestamps();
-        });        
+        });
     }
 
     public function down(): void

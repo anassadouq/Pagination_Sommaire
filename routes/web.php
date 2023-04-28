@@ -4,20 +4,29 @@ use App\Models\Client;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\ContratController;
+use App\Http\Controllers\SalarierController;
 
 
+// Redirigez la page d'accueil vers la page de connexion
 Route::get('/', function () {
-    return view('client.index', [
-        'clients' => Client::all()
-    ]);
+    return redirect('/login');
 });
 
 //Clients
 Route::resource('client',ClientController::class);
-
 //Details
 Route::resource('detail',DetailController::class);
-
 Route::get('/debitage/{clientId}', [DetailController::class, 'debitage']);
-
 Route::get('/allDebitage/{clientId}', [DetailController::class, 'allDebitage']);
+
+Auth::routes();
+Route::get('/home', [ClientController::class, 'index'])->name('home');
+
+//Salariers
+Route::resource('salarier',SalarierController::class);
+//Contrats
+Route::resource('contrat',ContratController::class);
+
+Route::get('/generatepdf/{salarierId}', [ContratController::class, 'generatepdf'])->name('attestation');
+Route::get('/generatepdftt/{salarierId}', [ContratController::class, 'generatepdftt'])->name('attestationtt');

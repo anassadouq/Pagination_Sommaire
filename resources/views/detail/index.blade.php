@@ -1,3 +1,5 @@
+@auth
+
 <html>
 <head>
 	<title>Details</title>
@@ -135,3 +137,4 @@
     </center>
 </body>
 </html>
+@endauth

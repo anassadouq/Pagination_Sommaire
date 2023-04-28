@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreDetailRequest;
 use App\Http\Requests\UpdateDetailRequest;
 
-use PDF;
-
 class DetailController extends Controller
 {
     public function index()
