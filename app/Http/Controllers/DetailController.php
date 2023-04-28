@@ -51,9 +51,21 @@ class DetailController extends Controller
 
     public function update(UpdateDetailRequest $request, Detail $detail)
     {
-        $detail->update($request->all());
-        return to_route('client.index');
-    }
+        $detail->update($request->except('image')); // mise à jour des autres attributs du détail
+        
+        // mise à jour de l'image si une nouvelle a été téléchargée
+        if ($request->hasFile('image')) {
+            $imagePath = public_path('images/'.$detail->image); // supprimez l'ancienne image
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+            $detail->image = $request->image->getClientOriginalName();
+            $request->image->move(public_path('images'), $detail->image);
+            $detail->save();
+        }
+        
+        return redirect()->route('client.index');
+    }    
 
     public function show($clientId)
     {
