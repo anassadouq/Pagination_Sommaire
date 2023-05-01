@@ -12,6 +12,10 @@
             @csrf
             @method('PUT')
             <tr>
+                <td><b>Sexe</b></td>
+                <td> : <input type="text" id="t" name="sexe" value="{{ $salarier->sexe }}" class="my-3"></td>
+            </tr>
+            <tr>
                 <td><b>Nom</b></td>
                 <td> : <input type="text" id="t" name="nom" value="{{ $salarier->nom }}" class="my-3"></td>
             </tr>
@@ -26,6 +30,10 @@
             <tr>
                 <td><b>Tel</b></td>
                 <td> : <input type="text" id="t" name="tel" value="{{ $salarier->tel }}" class="my-3"></td>
+            </tr>
+            <tr>
+                <td><b>Salaire</b></td>
+                <td> : <input type="text" id="t" name="salaire" value="{{ $salarier->salaire }}" class="my-3"></td>
             </tr>
             <tr>
                 <td><b>Adresse</b></td>

@@ -23,6 +23,7 @@
                     <th>Prenom</th>
                     <th>CIN</th>
                     <th>Tel</th>
+                    <th>Salaire</th>
                     <th>Date Entrée</th>
                     <th>Show</th>
                     <th>Actions</th>
@@ -37,7 +38,8 @@
                         <td>{{ $salarier->prenom }}</td>
                         <td>{{ $salarier->cin }}</td>
                         <td>{{ $salarier->tel }}</td>
-                        <td>{{ $salarier->dateEntree }}</td>
+                        <td>{{ $salarier->salaire }}DH</td>
+                        <td>{{ \Carbon\Carbon::parse($salarier->dateEntree)->format('d/m/Y') }}</td>
                         <td>
                             <a href="{{ route('contrat.show', $salarier->id) }}">
                                 <span class="material-symbols-outlined">ads_click</span>

@@ -12,7 +12,7 @@
 </style>
 <a href="{{ route('contrat.create', ['salarierId' => $salarier->id]) }}" class="btn btn-primary mx-3">Create</a>
 
-<div class="container">
+<div class="mx-3 my-3">
     <table class="text-center" width="100%">
         <thead>
             <tr>
@@ -21,6 +21,7 @@
                 <th>Adresse Sociéte</th>
                 <th>Date Départ</th>
                 <th>Date Finale</th>
+                <th>Contrat</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -33,6 +34,19 @@
                     <td>{{ $contrat->dateDepart }}</td>
                     <td>{{ $contrat->dateFinale }}</td>
                     <td>
+                        <a class="btn btn-warning my-2 mx-2" href="{{ route('attestation', ['salarierId' => $salarier->id, 'contratId' => $contrat->id]) }}" style="text-decoration: none">
+                            <span class="material-symbols-outlined">
+                                download
+                            </span> Contrat
+                        </a>
+
+                        <a class="btn btn-success" href="{{ route('soldett', ['salarierId' => $salarier->id, 'contratId' => $contrat->id]) }}" style="text-decoration: none">
+                            <span class="material-symbols-outlined">
+                                download
+                            </span> Solde de tt compte
+                        </a>
+                    </td>
+                    <td>
                         <form action="{{ route('contrat.destroy', $contrat['id']) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -44,17 +58,6 @@
             @endforeach
         </tbody>
     </table>
-    <a class="btn btn-success my-3 mx-3" href="{{ route('attestation', ['salarierId' => $salarier->id]) }}" style="text-decoration: none">
-        <span class="material-symbols-outlined">
-            download
-        </span> Contrat
-    </a>
-    
-    <a class="btn btn-secondary" href="{{ route('attestationtt', ['salarierId' => $salarier->id]) }}" style="text-decoration: none">
-        <span class="material-symbols-outlined">
-            download
-        </span> Solde de tt compte
-    </a>
 
 </div>
 <br>

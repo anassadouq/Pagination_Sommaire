@@ -23,11 +23,13 @@ class SalarierController extends Controller
     public function store(StoreSalarierRequest $request)
     {
         $salarier = new Salarier();
+        $salarier->sexe = $request->sexe;
         $salarier->nom = $request->nom;
         $salarier->prenom = $request->prenom;
         $salarier->cin = $request->cin;
         $salarier->tel = $request->tel;
         $salarier->adresse = $request->adresse;
+        $salarier->salaire = $request->salaire;
         $salarier->dateEntree = $request->dateEntree;
 
         $salarier->save();

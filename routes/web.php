@@ -28,5 +28,5 @@ Route::resource('salarier',SalarierController::class);
 //Contrats
 Route::resource('contrat',ContratController::class);
 
-Route::get('/generatepdf/{salarierId}', [ContratController::class, 'generatepdf'])->name('attestation');
-Route::get('/generatepdftt/{salarierId}', [ContratController::class, 'generatepdftt'])->name('attestationtt');
+Route::get('/attestation/{salarierId}/{contratId}', [ContratController::class, 'generatepdf'])->name('attestation');
+Route::get('/soldett/{salarierId}/{contratId}', [ContratController::class, 'soldett'])->name('soldett');

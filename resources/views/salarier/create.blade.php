@@ -9,14 +9,18 @@
 		label{
 			font-weight:bold;
 		}
-		input{
-			width:350px;
-		}
 	</style>
     <form method="POST" action="{{ route('salarier.store') }}">
 	 	<center>
 			<table>
 				@csrf
+				<tr>
+					<td><label for="sexe">Sexe : </label></td>
+					<td>
+						<input type="radio" name="sexe" value="M" class="my-4" >M
+						<input type="radio" name="sexe" value="Mme">Mme 
+					</td>
+				</tr>
 				<tr>
 					<td><label for="nom">Nom : </label></td>
 					<td><input type="text" placeholder="Nom Salarié" id="nom" name="nom" required class="my-4"></td>
@@ -36,6 +40,10 @@
 				<tr>
 					<td><label for="adresse">Adresse : </label></td>
 					<td><input type="text" placeholder="Adresse Salarié" id="adresse" name="adresse" required class="my-4"></td>
+				</tr>
+				<tr>
+					<td><label for="salaire">Salaire : </label></td>
+					<td><input type="text" placeholder="Salaire en DH" id="salaire" name="salaire" required class="my-4"></td>
 				</tr>
 				<tr>
 					<td><label for="dateEntree">Date Entrée : </label></td>

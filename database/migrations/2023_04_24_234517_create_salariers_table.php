@@ -15,6 +15,8 @@ return new class extends Migration
             $table->string('cin');
             $table->string('tel');
             $table->string('adresse');
+            $table->string('salaire');
+            $table->string('sexe');
             $table->date("dateEntree");
             $table->timestamps();
         });

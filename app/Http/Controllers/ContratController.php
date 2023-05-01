@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\StoreContratRequest;
 use App\Http\Requests\UpdateContratRequest;
+use Illuminate\Support\Facades\Storage;
 use PDF;
 
 class ContratController extends Controller
@@ -66,41 +67,29 @@ class ContratController extends Controller
             ->with('success', 'Le contrat a été supprimé avec succès.');
     }
 
-    public function generatepdf($salarierId)
-    {        
-        $salarier = Salarier::find($salarierId);
-        if (!$salarier) {
-            abort(404, 'salarier not found');
-        }
+    public function generatepdf($salarierId, $contratId)
+    {
+        $salarier = Salarier::findOrFail($salarierId);
+        $contrat = Contrat::findOrFail($contratId);
     
-        $contrats = Contrat::where('id_salarier', $salarierId)->get();
+        $pdf = PDF::loadView('contrat.contrat', compact('salarier', 'contrat'));
+        $pdfContent = $pdf->output();
+        $filename = $salarier->nom . '-' . $salarier->prenom . '-Contrat.pdf';
+        Storage::put('public/' . $filename, $pdfContent);
     
-        $data = [
-            'salarier' => $salarier,
-            'contrats' => $contrats
-        ];
-    
-        $pdf = PDF::loadView('contrat.contrat', $data);
-        $pdf->setOptions(['font_path' => public_path('fonts/ArialUnicodeMS.ttf')]);
-        return $pdf->download($salarier->nom . '_' . $salarier->prenom . '.pdf');
-    }    
+        return Storage::download('public/' . $filename);
+    }   
 
-    public function generatepdftt($salarierId)
-    {        
-        $salarier = Salarier::find($salarierId);
-        if (!$salarier) {
-            abort(404, 'salarier not found');
-        }
+    public function soldett($salarierId, $contratId)
+    {
+        $salarier = Salarier::findOrFail($salarierId);
+        $contrat = Contrat::findOrFail($contratId);
     
-        $contrats = Contrat::where('id_salarier', $salarierId)->get();
+        $pdf = PDF::loadView('contrat.soldett', compact('salarier', 'contrat'));
+        $pdfContent = $pdf->output();
+        $filename = $salarier->nom . '-' . $salarier->prenom . '-Contrat.pdf';
+        Storage::put('public/' . $filename, $pdfContent);
     
-        $data = [
-            'salarier' => $salarier,
-            'contrats' => $contrats
-        ];
-    
-        $pdf = PDF::loadView('contrat.soldett', $data);
-        $pdf->setOptions(['font_path' => public_path('fonts/ArialUnicodeMS.ttf')]);
-        return $pdf->download('Solde de tout compte'. $salarier->nom . '_' . $salarier->prenom . '.pdf');
+        return Storage::download('public/' . $filename);
     }
 }

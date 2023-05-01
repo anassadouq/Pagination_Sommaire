@@ -10,11 +10,13 @@ class Salarier extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'sexe',
         'nom',
         'prenom',
         'cin',
         'tel',
         'adresse',
+        'salaire',
         'dateEntree'
     ];
     public function salarier()

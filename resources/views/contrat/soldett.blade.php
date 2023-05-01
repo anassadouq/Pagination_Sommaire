@@ -12,19 +12,18 @@
             Refaites cette remise pour les articles 74 et 75 du Code du travail.<br>
             En vertu de la fin du contrat de travail conclu entre :<br>
             L'employeur 
-            @foreach ($contrats as $contrat)
+            
                 <b>{{$contrat->nomSociéte}}</b>
                 Adresse <b>{{$contrat->adresseSociéte}}</b><br>
-            @endforeach
+            
             Carte d'identité nationale <b>{{$salarier->cin}}</b> ou son représentant .............<br>
             Et le travailleur <b>{{$salarier->nom }} {{$salarier->prenom}}</b>
             Adresse <b>{{$salarier->adresse}}</b><br>
             Carte d'identité nationale : <b>{{$salarier->cin}}</b><br>
-            
-            @foreach ($contrats as $contrat) 
+
                 Date d'embauche : <b>{{ \Carbon\Carbon::parse($contrat->dateDepart)->format('d/m/Y') }}</b> <br>
                 Date de départ : <b>{{ \Carbon\Carbon::parse($contrat->dateFinale)->format('d/m/Y') }}</b> <br>
-            @endforeach
+            
             Le travailleur remet à son employeur ce document en vue de régler toutes les prestations et obligations qui lui sont dues.<br> 
             Ce document de règlement comprend un montant de ..................... réparti selon les éléments suivants :<br>
                     - Salaire journalier ..............<br>
