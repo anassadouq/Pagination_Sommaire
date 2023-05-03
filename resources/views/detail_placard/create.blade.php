@@ -11,21 +11,14 @@
 			font-weight:bold;
 		}
 	</style>
-    <form method="post" action="{{ route('detail.store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('detail_placard.store') }}" enctype="multipart/form-data">
 		<center> 
 			<table>
 				@csrf
 				<tr>
-					<input type="hidden" name="id_client" value="{{ $client->id }}">
+					<input type="hidden" name="id_placard" value="{{ $placard->id }}">
 					<td><label for="image">Image :</label></td>
 					<td><input type="file" name="image" class="my-4"></td>
-				</tr>
-				<tr>
-					<td><label for="position">Position : </label></td>
-					<td>
-						<input type="radio" name="position" value="haut" class="my-4" >Haut
-						<input type="radio" name="position" value="bas">Bas 
-					</td>
 				</tr>
 				<tr>
 					<td><label for="lieu">Hauteur : </label></td>
@@ -41,9 +34,13 @@
 				</tr>
 				<tr>
 					<td><label for="eppDer">Qte : </label></td>
+					<td><input type="text" name="qte" class="my-4" required></td>
+				</tr>
+				<tr>
+					<td><label for="eppDer">Num Appartement: </label></td>
 					<td>
-						<input type="text" name="qte" class="my-4" required>
-						<button type="submit" class="btn btn-primary mx-2">Créer Caisson</button>
+						<input type="text" name="appartement" class="my-4" required>
+						<button type="submit" class="btn btn-primary mx-2">Créer Placard</button>
 					</td>
 				</tr>
 			</table>

@@ -29,12 +29,10 @@
             </tr>
             <tr>
                 <td><b>Qte</b></td>
-                <td> : <input type="text" name="qte" value="{{ $detail->qte }}" class="my-3"></td> 
-            </tr>
-            
-            <tr>
-                <td></td>
-                <td><input type="submit" class="btn btn-secondary" value="Update Caisson" href="{{ route('detail.index') }}"></td>
+                <td> : 
+                    <input type="text" name="qte" value="{{ $detail->qte }}" class="my-3">
+                    <input type="submit" class="btn btn-secondary mx-2" value="Modifier Caisson" href="{{ route('detail.index') }}">
+                </td> 
             </tr>
         </table>
     </center>         

@@ -49,7 +49,7 @@
 					<td><label for="dateEntree">Date Entrée : </label></td>
 					<td>
 						<input type="date" id="dateEntree" name="dateEntree" required>
-						<button type="submit" class="btn btn-primary mx-2">Create Salarier</button>
+						<button type="submit" class="btn btn-primary mx-2">Créer Salarié</button>
 					</td>
 				</tr>
 			</table>

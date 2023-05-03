@@ -13,7 +13,7 @@
 			width:350px;
 		}
 	</style>
-    <form method="POST" action="{{ route('client.store') }}">
+    <form method="POST" action="{{ route('placard.store') }}">
 	 	<center>
 			<table>
 				@csrf

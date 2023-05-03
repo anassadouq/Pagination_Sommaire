@@ -49,9 +49,9 @@
                             <form action="{{ route('salarier.destroy', $salarier->id) }}" method="POST">
                                 @csrf
                                
-                                <a href="{{ route('salarier.edit' ,$salarier->id) }}" class="btn btn-secondary">Update</a>
+                                <a href="{{ route('salarier.edit' ,$salarier->id) }}" class="btn btn-secondary">Modifier</a>
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger mx-3">Delete</button> 
+                                <button type="submit" class="btn btn-danger mx-3">Supprimer</button> 
                             </form>
                         </td>
                     </tr>

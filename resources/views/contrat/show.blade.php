@@ -10,7 +10,11 @@
         border: 1px solid black;  
     }
 </style>
-<a href="{{ route('contrat.create', ['salarierId' => $salarier->id]) }}" class="btn btn-primary mx-3">Create</a>
+<a href="{{ route('contrat.create', ['salarierId' => $salarier->id]) }}" >
+        <button class="btn btn-primary my-4 mx-4" style="width:85px">
+            <span class="material-symbols-outlined">add</span>
+        </button>
+    </a>
 
 <div class="mx-3 my-3">
     <table class="text-center" width="100%">
