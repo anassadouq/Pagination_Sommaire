@@ -270,6 +270,50 @@
                 @endif
             </tr>
         @endforeach
+    </table><br>
+
+    <table style="width:50%">
+        <tr class="bg-info">
+            <th>Type</th>
+            <th>H</th>
+            <th>L</th>
+            <th>QTE</th>
+        </tr>
+        @foreach($detail_placards as $detail_placard)
+            <tr>
+                <td>DERRIERE</td>
+                @if($detail_placard->image == "coulisse1.png")
+                    <td>{{$detail_placard->hauteur}}</td>
+                    <td>{{$detail_placard->largeur}}</td>
+                    <td>{{$detail_placard->qte}}</td>
+                @endif
+                @if($detail_placard->image == "coulisse2.png")
+                    <td>{{$detail_placard->hauteur}}</td>
+                    <td>{{$detail_placard->largeur}}</td>
+                    <td>{{$detail_placard->qte}}</td>
+                @endif
+                @if($detail_placard->image == "pl_colis_2_porte.png")
+                    <td>{{($detail_placard->largeur) /2}}</td>
+                    <td>{{$detail_placard->hauteur}}</td>
+                    <td>{{$detail_placard->qte *2}}</td>
+                @endif
+                @if($detail_placard->image == "pl_colis_4_porte.png")
+                    <td>{{($detail_placard->largeur) /2}}</td>
+                    <td>{{$detail_placard->hauteur}}</td>
+                    <td>{{$detail_placard->qte *2}}</td>
+                @endif
+                @if($detail_placard->image == "pl_ouvr_1_p.png")
+                    <td>{{$detail_placard->largeur}}</td>
+                    <td>{{$detail_placard->hauteur}}</td>
+                    <td>{{$detail_placard->qte}}</td>
+                @endif
+                @if($detail_placard->image == "pl_ouvr_2_p.png")
+                    <td>{{$detail_placard->largeur}}</td>
+                    <td>{{$detail_placard->hauteur}}</td>
+                    <td>{{$detail_placard->qte}}</td>
+                @endif
+            </tr>
+        @endforeach
     </table>
 </center>
 <h4><a href="{{ route('placard.index') }}" class="mx-5">
