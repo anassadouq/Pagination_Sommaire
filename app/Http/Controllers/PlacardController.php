@@ -2,57 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Placard;
-use App\Http\Requests\StorePlacardRequest;
-use App\Http\Requests\UpdatePlacardRequest;
+use App\Models\Client;
+use App\Http\Requests\StoreClientRequest;
+use App\Http\Requests\UpdateClientRequest;
 
 class PlacardController extends Controller
 {
     public function index()
     {
         return view('placard.index', [
-            'placards' => Placard::all()
+            'clients' => Client::all()
         ]);
     }
 
     public function create()
     {
-        return view('placard.create');
+        return view('client.create');
     }
 
-    public function store(StorePlacardRequest $request)
+    public function store(StoreClientRequest $request)
     {
-        $placard = new Placard();
-        $placard->nom = $request->nom;
-        $placard->lieu = $request->lieu;
-        $placard->eppMat = $request->eppMat;
-        $placard->eppDer = $request->eppDer;
-        $placard->save();
-        return to_route('placard.index');
+        $client = new Client();
+        $client->nom = $request->nom;
+        $client->lieu = $request->lieu;
+        $client->eppMat = $request->eppMat;
+        $client->eppDer = $request->eppDer;
+        $client->save();
+        return to_route('client.index');
     }
 
-    public function show(Placard $placard)
+    public function show(Client $client)
     {
-        return view('placard.show', compact('placard'));
+        return view('client.show', compact('client'));
     }
 
-    public function edit(Placard $placard)
+    public function edit(Client $client)
     {
-        return view('placard.edit', compact('placard'));
+        return view('client.edit', compact('client'));
     }
 
-    public function update(UpdatePlacardRequest $request, Placard $placard)
+    public function update(UpdateClientRequest $request, Client $client)
     {
-        $placard->update($request->all());
-        return to_route('placard.index');
+        $client->update($request->all());
+        return to_route('client.index');
     }
 
     public function destroy($id)
     {
-        $placard = Placard::findOrFail($id);
-        $placard->delete();
+        $client = Client::findOrFail($id);
+        $client->delete();
 
-        return redirect()->route('placard.index')
-            ->with('success', 'Le placard a été supprimé avec succès.');
+        return redirect()->route('client.index')
+            ->with('success', 'Le client a été supprimé avec succès.');
     }
 }

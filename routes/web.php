@@ -33,5 +33,5 @@ Route::get('/soldett/{salarierId}/{contratId}', [ContratController::class, 'sold
 //Placards
 Route::resource('placard',PlacardController::class);
 Route::resource('detail_placard',DetailPlacardController::class);
-Route::get('/debitage_placard/{placardId}', [DetailPlacardController::class, 'debitage']);
-Route::get('/allDebitage_placard/{placardId}', [DetailPlacardController::class, 'allDebitage']);
+Route::get('/debitage_placard/{clientId}', [DetailPlacardController::class, 'debitage']);
+Route::get('/allDebitage_placard/{clientId}', [DetailPlacardController::class, 'allDebitage']);

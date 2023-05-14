@@ -11,7 +11,7 @@
         text-align:center;
     }
 </style>
-<center><h1 class="my-2">{{ $placard->nom }} {{ $placard->lieu }}</h1></center>
+<center><h1 class="my-2">{{ $client->nom }} {{ $client->lieu }}</h1></center>
 
 @foreach($detail_placards as $detail_placard)
     @if($detail_placard->image == "coulisse1.png")
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <td>MNT COLIS</td>
-                        <td>{{$detail_placard->hauteur - $placard->eppMat - $placard->eppMat}}</td>
+                        <td>{{$detail_placard->hauteur - $client->eppMat - $client->eppMat}}</td>
                         <td>{{$detail_placard->profondeur -1}}</td>
                         <td>{{$detail_placard->qte *2}}</td>
                     </tr>
@@ -59,13 +59,13 @@
                     </tr>
                     <tr>
                         <td>SPR HOR</td>
-                        <td>{{$detail_placard->largeur - $placard->eppMat - $placard->eppMat}}</td>
+                        <td>{{$detail_placard->largeur - $client->eppMat - $client->eppMat}}</td>
                         <td>{{$detail_placard->profondeur - 10}}</td>
                         <td>{{$detail_placard->qte}}</td>
                     </tr>
                     <tr>
                         <td>ETAGER</td>
-                        <td>{{(($detail_placard->largeur - $placard->eppMat - $placard->eppMat - 1.9) /2) - 0.1}}</td>
+                        <td>{{(($detail_placard->largeur - $client->eppMat - $client->eppMat - 1.9) /2) - 0.1}}</td>
                         <td>{{$detail_placard->profondeur - 10-0.5}}</td>
                         <td>{{$detail_placard->qte *4}}</td>
                     </tr>
@@ -143,13 +143,13 @@
                     </tr>
                     <tr>
                         <td>MNT</td>
-                        <td>{{$detail_placard->hauteur - $placard->eppMat - $placard->eppMat}}</td>
+                        <td>{{$detail_placard->hauteur - $client->eppMat - $client->eppMat}}</td>
                         <td>{{$detail_placard->profondeur -1}}</td>
                         <td>{{$detail_placard->qte}}</td>
                     </tr>
                     <tr>
                         <td>MNT BANDA</td>
-                        <td>{{$detail_placard->hauteur - $placard->eppMat - $placard->eppMat}}</td>
+                        <td>{{$detail_placard->hauteur - $client->eppMat - $client->eppMat}}</td>
                         <td>{{$detail_placard->profondeur -1}}</td>
                         <td>{{$detail_placard->qte}}</td>
                     </tr>
@@ -167,13 +167,13 @@
                     </tr>
                     <tr>
                         <td>SPR HOR</td>
-                        <td>{{$detail_placard->largeur - $placard->eppMat - $placard->eppMat}}</td>
+                        <td>{{$detail_placard->largeur - $client->eppMat - $client->eppMat}}</td>
                         <td>{{$detail_placard->profondeur - 10}}</td>
                         <td>{{$detail_placard->qte}}</td>
                     </tr>
                     <tr>
                         <td>ETAGER</td>
-                        <td>{{(($detail_placard->largeur - $placard->eppMat - $placard->eppMat - 1.9) /2) - 0.1}}</td>
+                        <td>{{(($detail_placard->largeur - $client->eppMat - $client->eppMat - 1.9) /2) - 0.1}}</td>
                         <td>{{$detail_placard->profondeur - 10-0.5}}</td>
                         <td>{{$detail_placard->qte *4}}</td>
                     </tr>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Placard;
+use App\Models\Client;
+
 use App\Models\DetailPlacard;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -20,15 +22,15 @@ class DetailPlacardController extends Controller
 
     public function create(Request $request)
     {
-        $placardId = $request->input('placardId');
-        $placard = Placard::find($placardId);
-        return view('detail_placard.create', compact('placard'));
+        $clientId = $request->input('clientId');
+        $client = Client::find($clientId);
+        return view('detail_placard.create', compact('client'));
     }    
 
     public function store(StoreDetailPlacardRequest $request)
     {
         $detail_placard = new DetailPlacard();
-        $detail_placard->id_placard = $request->id_placard;
+        $detail_placard->id_client = $request->id_client;
         $detail_placard->hauteur = $request->hauteur;
         $detail_placard->largeur = $request->largeur;
         $detail_placard->profondeur = $request->profondeur;
@@ -67,11 +69,11 @@ class DetailPlacardController extends Controller
         return redirect()->route('placard.index');
     }      
 
-    public function show($placardId)
+    public function show($clientId)
     {
-        $placard = Placard::find($placardId);
-        $detail_placards = DetailPlacard::where('id_placard', $placardId)->get();
-        return view('detail_placard.show', compact('detail_placards', 'placard'));
+        $client = Client::find($clientId);
+        $detail_placards = DetailPlacard::where('id_client', $clientId)->get();
+        return view('detail_placard.show', compact('detail_placards', 'client'));
     }
 
     public function destroy($id)
@@ -83,17 +85,17 @@ class DetailPlacardController extends Controller
             ->with('success', 'Le detail_placard a été supprimé avec succès.');
     }
 
-    public function debitage($placardId)
+    public function debitage($clientId)
     {
-        $placard = Placard::find($placardId);        
-        $detail_placards = DetailPlacard::where('id_placard', $placardId)->get();
-        return view('detail_placard.debitage', compact('placard', 'detail_placards'));
+        $client = Client::find($clientId);        
+        $detail_placards = DetailPlacard::where('id_client', $clientId)->get();
+        return view('detail_placard.debitage', compact('client', 'detail_placards'));
     }
     
-    public function allDebitage($placardId)
+    public function allDebitage($clientId)
     {
-        $placard = Placard::find($placardId);        
-        $detail_placards = DetailPlacard::where('id_placard', $placardId)->get();
-        return view('detail_placard.All_Debitage', compact('placard', 'detail_placards'));
+        $client = Client::find($clientId);        
+        $detail_placards = DetailPlacard::where('id_client', $clientId)->get();
+        return view('detail_placard.All_Debitage', compact('client', 'detail_placards'));
     } 
 }

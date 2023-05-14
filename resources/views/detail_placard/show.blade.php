@@ -13,7 +13,7 @@
         border: 1px solid black;  
     }
 </style>
-<center><h1>{{ $placard->nom }} {{ $placard->lieu }}</h1></center>
+<center><h1 class="my-2">{{ $client->nom }} {{ $client->lieu }}</h1></center>
 
 <div class="container">
     <table class="text-center" id="myTable">
@@ -52,13 +52,13 @@
     <a href="{{ route('placard.index') }}" class="btn btn-dark text-light m-3 ">
         <span class="material-symbols-outlined">undo</span>
     Retour</a>
-    <a href="{{ route('detail_placard.create', ['placardId' => $placard->id]) }}" class="btn btn-primary mx-3">
+    <a href="{{ route('detail_placard.create', ['clientId' => $client->id]) }}" class="btn btn-primary mx-3">
         <span class="material-symbols-outlined">
             add_circle
         </span>    
     Placards</a>
-    <a href="{{ url('/debitage_placard/'.$placard->id) }}" class="btn btn-success mx-3">Débutage</a>
-    <a href="{{ url('/allDebitage_placard/'.$placard->id) }}" class="btn btn-warning mx-3">Débutage Totale</a>
+    <a href="{{ url('/debitage_placard/'.$client->id) }}" class="btn btn-success mx-3">Débutage</a>
+    <a href="{{ url('/allDebitage_placard/'.$client->id) }}" class="btn btn-warning mx-3">Débutage Totale</a>
 </div>
 <br>
 

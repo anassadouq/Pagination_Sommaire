@@ -16,7 +16,7 @@
 			<table>
 				@csrf
 				<tr>
-					<input type="hidden" name="id_placard" value="{{ $placard->id }}">
+					<input type="hidden" name="id_client" value="{{ $client->id }}">
 					<td><label for="image">Image :</label></td>
 					<td><input type="file" name="image" class="my-4"></td>
 				</tr>

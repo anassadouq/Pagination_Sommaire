@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('detail_placards', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_placard');
-            $table->foreign('id_placard')->references('id')->on('placards')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('id_client');
+            $table->foreign('id_client')->references('id')->on('clients')->onUpdate('cascade')->onDelete('cascade');
             $table->string('image')->nullable();
             $table->float('hauteur');
             $table->float('largeur');

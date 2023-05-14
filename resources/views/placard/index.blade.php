@@ -33,23 +33,23 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($placards as $placard)
+                @foreach ($clients as $client)
                     <tr>
-                        <td>{{ $placard->id }}</td>
-                        <td>{{ $placard->nom }}</td>
-                        <td>{{ $placard->lieu }}</td>
-                        <td>{{ $placard->eppMat }}cm</td>
-                        <td>{{ $placard->eppDer }}cm </td>
+                        <td>{{ $client->id }}</td>
+                        <td>{{ $client->nom }}</td>
+                        <td>{{ $client->lieu }}</td>
+                        <td>{{ $client->eppMat }}cm</td>
+                        <td>{{ $client->eppDer }}cm </td>
                         <td>
-                            <a href="{{ route('detail_placard.show', $placard->id) }}">
+                            <a href="{{ route('detail_placard.show', $client->id) }}">
                                 <span class="material-symbols-outlined">ads_click</span>
                             </a>
                         </td>
                         <td>
-                            <form action="{{ route('placard.destroy', $placard->id) }}" method="POST">
+                            <form action="{{ route('client.destroy', $client->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('placard.edit' ,$placard->id) }}" class="btn btn-secondary">Modifier</a>
+                                <a href="{{ route('client.edit' ,$client->id) }}" class="btn btn-secondary">Modifier</a>
                                 <button type="submit" class="btn btn-danger mx-3">Supprimer</button> 
                             </form>
                         </td>

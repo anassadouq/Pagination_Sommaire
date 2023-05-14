@@ -10,7 +10,7 @@
         text-align:center;
     }
 </style>
-<h1 class="text-center">{{ $placard->nom }} {{ $placard->lieu }}</h1>
+<h1 class="text-center">{{ $client->nom }} {{ $client->lieu }}</h1>
 
 <center>
     <table style="width:50%" id="myTable" class="m-4">
@@ -24,7 +24,7 @@
             <tr>
                 <td class="bg-dark text-light">MNT</td>
                 @if($detail_placard->image == "coulisse2.png")
-                    <td>{{$detail_placard->hauteur - $placard->eppMat - $placard->eppMat}}</td>
+                    <td>{{$detail_placard->hauteur - $client->eppMat - $client->eppMat}}</td>
                     <td>{{$detail_placard->profondeur -1}}</td>
                     <td>{{$detail_placard->qte}}</td>
                 @endif
@@ -45,7 +45,7 @@
             <tr>
                 <td class="bg-primary">MNT COLIS</td>
                 @if($detail_placard->image == "coulisse1.png")
-                    <td>{{$detail_placard->hauteur - $placard->eppMat - $placard->eppMat}}</td>
+                    <td>{{$detail_placard->hauteur - $client->eppMat - $client->eppMat}}</td>
                     <td>{{$detail_placard->profondeur -1}}</td>
                     <td>{{$detail_placard->qte *2}}</td>
                 @endif
@@ -56,7 +56,7 @@
             <tr>
                 <td class="bg-warning">MNT BANDA</td>
                 @if($detail_placard->image == "coulisse2.png")
-                    <td>{{$detail_placard->hauteur - $placard->eppMat - $placard->eppMat}}</td>
+                    <td>{{$detail_placard->hauteur - $client->eppMat - $client->eppMat}}</td>
                     <td>{{$detail_placard->profondeur -1}}</td>
                     <td>{{$detail_placard->qte}}</td>
                 @endif
@@ -119,12 +119,12 @@
             <tr>
                 <td class="bg-success text-light">SPR HOR</td>
                 @if($detail_placard->image == "coulisse1.png")
-                    <td>{{$detail_placard->largeur - $placard->eppMat - $placard->eppMat}}</td>
+                    <td>{{$detail_placard->largeur - $client->eppMat - $client->eppMat}}</td>
                     <td>{{$detail_placard->profondeur - 10}}</td>
                     <td>{{$detail_placard->qte}}</td>
                 @endif
                 @if($detail_placard->image == "coulisse2.png")
-                    <td>{{$detail_placard->largeur - $placard->eppMat - $placard->eppMat}}</td>
+                    <td>{{$detail_placard->largeur - $client->eppMat - $client->eppMat}}</td>
                     <td>{{$detail_placard->profondeur - 10}}</td>
                     <td>{{$detail_placard->qte}}</td>
                 @endif
@@ -135,12 +135,12 @@
             <tr>
                 <td class="bg-dark text-light">ETAGER</td>
                 @if($detail_placard->image == "coulisse1.png")
-                    <td>{{(($detail_placard->largeur - $placard->eppMat - $placard->eppMat - 1.9) /2) - 0.1}}</td>
+                    <td>{{(($detail_placard->largeur - $client->eppMat - $client->eppMat - 1.9) /2) - 0.1}}</td>
                     <td>{{$detail_placard->profondeur - 10-0.5}}</td>
                     <td>{{$detail_placard->qte *4}}</td>
                 @endif
                 @if($detail_placard->image == "coulisse2.png")
-                    <td>{{(($detail_placard->largeur - $placard->eppMat - $placard->eppMat - 1.9) /2) - 0.1}}</td>
+                    <td>{{(($detail_placard->largeur - $client->eppMat - $client->eppMat - 1.9) /2) - 0.1}}</td>
                     <td>{{$detail_placard->profondeur - 10-0.5}}</td>
                     <td>{{$detail_placard->qte *4}}</td>
                 @endif
