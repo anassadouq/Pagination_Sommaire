@@ -13,20 +13,18 @@
 <body>
     
     <div class="container">
-    <h1 class="text-center">Placards</h1>
+    <h1 class="text-center">Devis</h1>
 
-    <a href="{{route('placard.create')}}" >
+    <a href="{{route('devis.create')}}" >
         <button class="btn btn-primary my-4" style="width:85px">
             <span class="material-symbols-outlined">add</span>
         </button>
     </a>
-        <table class="text-center" id="myTable">
+        <table id="myTable" width="70%">
             <thead>
                 <tr>
                     <th>Nom</th>
                     <th>Lieu</th>
-                    <th>Eppesseur Matiere</th>
-                    <th>Eppesseur Dérriere</th>
                     <th>Show</th>
                     <th>Actions</th>
                 </tr>
@@ -36,10 +34,8 @@
                     <tr>
                         <td>{{ $client->nom }}</td>
                         <td>{{ $client->lieu }}</td>
-                        <td>{{ $client->eppMat }}cm</td>
-                        <td>{{ $client->eppDer }}cm </td>
                         <td>
-                            <a href="{{ route('detail_placard.show', $client->id) }}">
+                            <a href="{{ route('detail_devis.show', $client->id) }}">
                                 <span class="material-symbols-outlined">ads_click</span>
                             </a>
                         </td>

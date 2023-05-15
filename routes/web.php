@@ -2,12 +2,15 @@
 
 use App\Models\Client;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DevisController;
+use App\Http\Controllers\AvanceController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\ContratController;
 use App\Http\Controllers\PlacardController;
 use App\Http\Controllers\SalarierController;
 use App\Http\Controllers\DetailPlacardController;
+use App\Http\Controllers\DetailDevisController;
 
 
 // Redirigez la page d'accueil vers la page de connexion
@@ -35,3 +38,9 @@ Route::resource('placard',PlacardController::class);
 Route::resource('detail_placard',DetailPlacardController::class);
 Route::get('/debitage_placard/{clientId}', [DetailPlacardController::class, 'debitage']);
 Route::get('/allDebitage_placard/{clientId}', [DetailPlacardController::class, 'allDebitage']);
+
+//Devis
+Route::resource('devis',DevisController::class);
+Route::resource('detail_devis',DetailDevisController::class);
+Route::resource('avance',AvanceController::class);
+Route::get('/devis/{clientId}/pdf', [DetailDevisController::class, 'devis'])->name('devis.pdf');

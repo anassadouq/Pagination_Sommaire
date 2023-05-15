@@ -23,7 +23,6 @@
         <table class="text-center" id="myTable">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nom</th>
                     <th>Lieu</th>
                     <th>Eppesseur Matiere</th>
@@ -35,7 +34,6 @@
             <tbody>
                 @foreach ($clients as $client)
                     <tr>
-                        <td>{{ $client->id }}</td>
                         <td>{{ $client->nom }}</td>
                         <td>{{ $client->lieu }}</td>
                         <td>{{ $client->eppMat }}cm</td>

@@ -53,17 +53,14 @@
         <span class="material-symbols-outlined">undo</span>
     Retour</a>
     <a href="{{ route('detail.create', ['clientId' => $client->id]) }}" class="btn btn-primary mx-3">
-    <span class="material-symbols-outlined">
-add_circle
-</span>    
-     Caisson</a>
+        <span class="material-symbols-outlined">
+            add_circle
+        </span>    
+    Caisson</a>
     <a href="{{ url('/debitage/'.$client->id) }}" class="btn btn-success mx-3">Débutage</a>
     <a href="{{ url('/allDebitage/'.$client->id) }}" class="btn btn-warning mx-3">Débutage Totale</a>
 </div>
-<br>
-
-
-<br><br>
+<br><br><br>
 
 
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>

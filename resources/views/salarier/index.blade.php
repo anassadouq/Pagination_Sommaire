@@ -32,8 +32,6 @@
             <tbody>
                 @foreach ($salariers as $salarier)
                     <tr>
-                        
-                        
                         <td>{{ $salarier->nom }}</td>
                         <td>{{ $salarier->prenom }}</td>
                         <td>{{ $salarier->cin }}</td>

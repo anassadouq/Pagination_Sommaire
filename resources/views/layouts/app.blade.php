@@ -38,6 +38,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('salarier.index') }}">Salariés</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('devis.index') }}">Devis</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
