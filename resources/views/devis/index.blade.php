@@ -15,7 +15,7 @@
     <div class="container">
     <h1 class="text-center">Devis</h1>
 
-    <a href="{{route('devis.create')}}" >
+    <a href="{{route('client.create')}}" >
         <button class="btn btn-primary my-4" style="width:85px">
             <span class="material-symbols-outlined">add</span>
         </button>
