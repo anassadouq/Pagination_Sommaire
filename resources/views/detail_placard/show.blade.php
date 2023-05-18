@@ -16,6 +16,16 @@
 <center><h1 class="my-2">{{ $client->nom }} {{ $client->lieu }}</h1></center>
 
 <div class="container">
+    <a href="{{ route('placard.index') }}" class="btn btn-dark text-light m-3 ">
+        <span class="material-symbols-outlined">undo</span>
+    Retour</a>
+    <a href="{{ route('detail_placard.create', ['clientId' => $client->id]) }}" class="btn btn-primary mx-3">
+        <span class="material-symbols-outlined">
+            add_circle
+        </span>    
+    Placards</a>
+    <a href="{{ url('/debitage_placard/'.$client->id) }}" class="btn btn-success mx-3">Débutage</a>
+    <a href="{{ url('/allDebitage_placard/'.$client->id) }}" class="btn btn-warning mx-3">Débutage Totale</a>
     <table class="text-center" id="myTable">
         <thead>
             <tr>
@@ -31,39 +41,34 @@
         <tbody>
             @foreach ($detail_placards as $detail_placard)
                 <tr>
-                    <td><img src="/images/{{$detail_placard['image']}}" width="100px" ></td>
+                    <td><img src="/images/{{$detail_placard['image']}}" width="100px"></td>
                     <td>{{ $detail_placard['hauteur'] }}cm</td>
                     <td>{{ $detail_placard['largeur'] }}cm</td>
                     <td>{{ $detail_placard['profondeur'] }}cm</td>
                     <td>{{ $detail_placard['qte'] }}</td>
                     <td>{{ $detail_placard['appartement'] }}</td>
                     <td>
-                        <form action="{{ route('detail_placard.destroy', $detail_placard['id']) }}" method="POST">
+                        <form action="{{ route('detail_placard.destroy', $detail_placard['id']) }}" method="POST" id="deleteForm{{ $detail_placard['id'] }}">
                             @csrf
                             @method('DELETE')
-                            <a href="{{ route('detail_placard.edit' ,$detail_placard['id']) }}" class="btn btn-secondary">Modifier</a>
-                            <button type="submit" class="btn btn-danger mx-3">Supprimer</button> 
+                            <a href="{{ route('detail_placard.edit', $detail_placard['id']) }}" class="btn btn-secondary">Modifier</a>
+                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $detail_placard['id'] }}')">Supprimer</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    <a href="{{ route('placard.index') }}" class="btn btn-dark text-light m-3 ">
-        <span class="material-symbols-outlined">undo</span>
-    Retour</a>
-    <a href="{{ route('detail_placard.create', ['clientId' => $client->id]) }}" class="btn btn-primary mx-3">
-        <span class="material-symbols-outlined">
-            add_circle
-        </span>    
-    Placards</a>
-    <a href="{{ url('/debitage_placard/'.$client->id) }}" class="btn btn-success mx-3">Débutage</a>
-    <a href="{{ url('/allDebitage_placard/'.$client->id) }}" class="btn btn-warning mx-3">Débutage Totale</a>
-</div>
-<br>
 
+</div><br>
 
-<br><br>
+<script>
+    function confirmDelete(detailId) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer ce placard ?')) {
+            document.getElementById('deleteForm' + detailId).submit();
+        }
+    }
+</script>
 
 
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>

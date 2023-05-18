@@ -1,4 +1,3 @@
-@auth
 @extends('layouts.app')
 @section('content')
 <html lang="en">
@@ -11,6 +10,7 @@
     <title>Detail Devis</title>
 </head>
 <body>
+@if (Auth::user()->email == "younes@gmail.com")
     <style>
         table, th, td {
             border: 1px solid;
@@ -32,7 +32,7 @@
                 download
             </span> 
         Télécharger le devis</a>
-        <h1 class="my-2">MR {{ $client->nom }} {{ $client->lieu }}</h1>
+        <h1 class="my-2">{{ $client->nom }} {{ $client->lieu }}</h1>
     </center>
     <center>
         <table width="90%" class="text-center my-3">
@@ -42,6 +42,7 @@
                 <th>Unite</th>
                 <th>PU</th>
                 <th>Prix</th>
+                <th>Date</th>
                 <th>Suppression</th>
             </tr>
             @php
@@ -58,11 +59,12 @@
                     <td>{{ $detail_devis->unite }}</td>
                     <td>{{ $detail_devis->pu }}</td>
                     <td>{{ $prix }}</td>
+                    <td>{{ \Carbon\Carbon::parse($detail_devis->date_devis)->format('d/m/Y') }}</td>
                     <td>
-                        <form action="{{ route('detail_devis.destroy', $detail_devis['id']) }}" method="POST">
+                        <form action="{{ route('detail_devis.destroy', $detail_devis['id']) }}" method="POST" id="deleteForm{{ $detail_devis['id'] }}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger mx-3">Supprimer</button> 
+                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $detail_devis['id'] }}')">Supprimer</button> 
                         </form>
                     </td>
                 </tr>
@@ -91,11 +93,11 @@
                     <td>{{ $avance->prix }}</td>
                     <td>{{ $avance->type }}</td>
                     <td>
-                        <form action="{{ route('avance.destroy', $avance['id']) }}" method="POST">
+                        <form action="{{ route('avance.destroy', $avance['id']) }}" method="POST" id="deleteAvanceForm{{ $avance['id'] }}">
                             @csrf
                             @method('DELETE')
                             <a href="{{ route('avance.edit', $avance['id']) }}" class="btn btn-secondary">Modifier</a>
-                            <button type="submit" class="btn btn-danger mx-3">Supprimer</button>
+                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDeleteAvance('{{ $avance['id'] }}')">Supprimer</button>
                         </form>
                     </td>
                 </tr>
@@ -109,6 +111,19 @@
             </tr>
         </table>
     </div>
+
+    <script>
+        function confirmDelete(detailDevisId) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
+                document.getElementById('deleteForm' + detailDevisId).submit();
+            }
+        }
+    function confirmDeleteAvance(avanceId) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer cette avance ?')) {
+            document.getElementById('deleteAvanceForm' + avanceId).submit();
+        }
+    }
+</script>
 </body>
 </html>
 @endsection

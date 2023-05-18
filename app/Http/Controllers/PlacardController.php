@@ -27,8 +27,12 @@ class PlacardController extends Controller
         $client->lieu = $request->lieu;
         $client->eppMat = $request->eppMat;
         $client->eppDer = $request->eppDer;
+        
+        if ($request->has('num')) {
+            $client->num = $request->num;
+        }
         $client->save();
-        return to_route('client.index');
+        return redirect()->route('placard.index');
     }
 
     public function show(Client $client)

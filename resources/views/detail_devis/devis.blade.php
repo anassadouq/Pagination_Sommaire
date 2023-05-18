@@ -8,7 +8,7 @@
 </head>
 <body>
     <style>
-        table, th, td {
+        table, th, td{
             border: 1px solid;
             text-align: center;
         }
@@ -24,13 +24,21 @@
     </style>
     <center>
         <table width="100%">
-            <tr>
-                <th style="background-color : black">c</th>
+            <tr style="background-color:black">
+                <th colspan=2>c</th>
             </tr>
             <tr>
-                <td height="7%">
+                <td height="5%" colspan=2>
                     <h2>DEVIS</h2>
                 </td>
+            </tr>
+            <tr>
+                @foreach ($detail_deviss as $detail_devis)
+                    @if ($loop->first)
+                        <td><b>{{ \Carbon\Carbon::parse($detail_devis->date_devis)->format('d/m/Y') }}</b></td>
+                    @endif
+                @endforeach
+                <td><b>N°{{ $client->num }}</b></td>
             </tr>
         </table><br>
         <table width="100%">
@@ -38,18 +46,18 @@
                 <th style="background-color : #F0F0F0">Client</th>
             </tr>
             <tr>
-                <td height="7%">
-                    <b>MR {{ $client->nom }} {{ $client->lieu }}</b>
+                <td height="5%">
+                    <b>{{ $client->nom }} {{ $client->lieu }}</b>
                 </td>
             </tr>
         </table><br>
         <table width="100%" class="text-center my-3">
             <tr>
-                <th>Article</th>
-                <th>Qte</th>
-                <th>Unite</th>
-                <th>PU</th>
-                <th>Prix</th>
+                <th width="50%">Article</th>
+                <th width="10%">Qte</th>
+                <th width="10%">Unite</th>
+                <th width="10%">PU</th>
+                <th width="20%">Prix</th>
             </tr>
             @php
                 $total = 0;
@@ -71,7 +79,7 @@
 
         <table width="100%" class="text-center my-3">
             <tr style="background-color : #F0F0F0">
-                <th>TOTAL</th>
+                <th width="80%">TOTAL</th>
                 <th>{{ $total }} DH</th>
             </tr>
         </table>

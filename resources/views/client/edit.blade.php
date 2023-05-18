@@ -7,6 +7,10 @@
             @csrf
             @method('PUT')
             <tr>
+                <td><b>Numero</b></td>
+                <td> : <input type="text" name="num" value="{{ $client->num }}" class="my-4"></td>
+            </tr>
+            <tr>
                 <td><b>Nom</b></td>
                 <td> : <input type="text" name="nom" value="{{ $client->nom }}" class="my-4"></td>
             </tr>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->float('qte');
             $table->string("unite");
             $table->float("pu");
+            $table->date("date_devis");
             $table->timestamps();
         });
     }

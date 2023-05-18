@@ -19,20 +19,30 @@
 					<input type="hidden" name="id_client" value="{{ $client->id }}">
 				</tr>
 				<tr>
-					<td><label for="lieu">article : </label></td>
+					<td><label for="lieu">Article : </label></td>
 					<td><input type="text" name="article" class="my-4" required></td>
 				</tr>
 				<tr>
-					<td><label for="eppMat">qte : </label></td>
+					<td><label for="eppMat">Qte : </label></td>
 					<td><input type="text" name="qte" class="my-4" required></td>
 				</tr>
 				<tr>
-					<td><label for="eppDer">unite : </label></td>
-					<td><input type="text" name="unite" class="my-4" required></td>
+					<td><label for="eppDer">Unite : </label></td>
+					<td>
+						<input type="radio" name="unite" value="unité " class="my-4 mx-1">Unité 
+						<input type="radio" name="unite" value="m2" class="mx-1">m2  
+						<input type="radio" name="unite" value="ml" class="mx-1">ml 
+						<input type="radio" name="unite" value="m3" class="mx-1">m3  
+						<input type="radio" name="unite" value="Forfait" class="mx-1">Forfait 
+					</td>
 				</tr>
 				<tr>
-					<td><label for="eppDer">pu : </label></td>
+					<td><label for="eppDer">Pu : </label></td>
 					<td><input type="text" name="pu" class="my-4" required></td>
+				</tr>
+				<tr>
+					<td><label for="eppDer">Date Devis : </label></td>
+					<td><input type="date" name="date_devis" class="my-4"></td>
 				</tr>
 				<tr>
 					<td>

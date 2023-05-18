@@ -18,6 +18,10 @@
 			<table>
 				@csrf
 				<tr>
+					<td><label for="num">num : </label></td>
+					<td><input type="text" placeholder="num Client" name="num" class="my-4"></td>
+				</tr>
+				<tr>
 					<td><label for="nom">Nom : </label></td>
 					<td><input type="text" placeholder="Nom Client" name="nom" required class="my-4"></td>
 				</tr>

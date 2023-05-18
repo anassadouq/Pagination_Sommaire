@@ -51,11 +51,11 @@
                         </a>
                     </td>
                     <td>
-                        <form action="{{ route('contrat.destroy', $contrat['id']) }}" method="POST">
+                        <form action="{{ route('contrat.destroy', $contrat['id']) }}" method="POST" id="deleteContratForm{{ $contrat['id'] }}">
                             @csrf
                             @method('DELETE')
                             <a href="{{ route('contrat.edit' ,$contrat['id']) }}" class="btn btn-secondary">Modifier</a>
-                            <button type="submit" class="btn btn-danger mx-3">Supprimer</button> 
+                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDeleteContrat('{{ $contrat['id'] }}')">Supprimer</button>
                         </form>
                     </td>
                 </tr>
@@ -64,6 +64,12 @@
     </table>
 
 </div>
-<br>
+<script>
+        function confirmDeleteContrat(contratId) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer ce contrat ?')) {
+                document.getElementById('deleteContratForm' + contratId).submit();
+            }
+        }
+    </script>
 @endsection
 @endauth

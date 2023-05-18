@@ -44,12 +44,11 @@
                             </a>
                         </td>
                         <td>
-                            <form action="{{ route('salarier.destroy', $salarier->id) }}" method="POST">
+                            <form action="{{ route('salarier.destroy', $salarier->id) }}" method="POST" id="deleteSalarierForm{{ $salarier->id }}">
                                 @csrf
-                               
-                                <a href="{{ route('salarier.edit' ,$salarier->id) }}" class="btn btn-secondary">Modifier</a>
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger mx-3">Supprimer</button> 
+                                <a href="{{ route('salarier.edit' ,$salarier->id) }}" class="btn btn-secondary">Modifier</a>
+                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDeleteSalarier('{{ $salarier->id }}')">Supprimer</button>
                             </form>
                         </td>
                     </tr>
@@ -57,6 +56,14 @@
             </tbody>
         </table>    
     </div>
+
+    <script>
+        function confirmDeleteSalarier(salarierId) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer ce salarié ?')) {
+                document.getElementById('deleteSalarierForm' + salarierId).submit();
+            }
+        }
+    </script>
 </body>
 </html>
 @endsection

@@ -15,7 +15,9 @@ class Devis extends Model
         'qte',
         'largeur',
         'unite',
-        'pu'
+        'pu',
+        'num_devis',
+        'date_devis'
     ];
     public function clientModels()
     {

@@ -37,7 +37,8 @@ class DetailDevisController extends Controller
         $detail_devis->qte = $request->qte;
         $detail_devis->unite = $request->unite;
         $detail_devis->pu = $request->pu;
-        
+        $detail_devis->date_devis = $request->date_devis;
+
         $detail_devis->save();
         return redirect()->route('devis.index');
     }

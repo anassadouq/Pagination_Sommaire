@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
+            $table->string('num')->nullable();
             $table->string('nom');
             $table->string('lieu');
             $table->string('eppMat');

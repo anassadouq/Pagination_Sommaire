@@ -16,6 +16,16 @@
 <center><h1>{{ $client->nom }} {{ $client->lieu }}</h1></center>
 
 <div class="container">
+<a href="{{ route('client.index') }}" class="btn btn-dark text-light m-3 ">
+        <span class="material-symbols-outlined">undo</span>
+    Retour</a>
+    <a href="{{ route('detail.create', ['clientId' => $client->id]) }}" class="btn btn-primary mx-3">
+        <span class="material-symbols-outlined">
+            add_circle
+        </span>    
+    Caisson</a>
+    <a href="{{ url('/debitage/'.$client->id) }}" class="btn btn-success mx-3">Débutage</a>
+    <a href="{{ url('/allDebitage/'.$client->id) }}" class="btn btn-warning mx-3">Débutage Totale</a>
     <table class="text-center" id="myTable">
         <thead>
             <tr>
@@ -31,37 +41,35 @@
         <tbody>
             @foreach ($details as $detail)
                 <tr>
-                    <td><img src="/images/{{$detail['image']}}" width="100px" ></td>
+                    <td><img src="/images/{{$detail['image']}}" width="100px"></td>
                     <td>{{ $detail['position'] }}</td>
                     <td>{{ $detail['hauteur'] }}cm</td>
                     <td>{{ $detail['largeur'] }}cm</td>
                     <td>{{ $detail['profondeur'] }}cm</td>
                     <td>{{ $detail['qte'] }}</td>
                     <td>
-                        <form action="{{ route('detail.destroy', $detail['id']) }}" method="POST">
+                        <form action="{{ route('detail.destroy', $detail['id']) }}" method="POST" id="deleteForm{{ $detail['id'] }}">
                             @csrf
                             @method('DELETE')
-                            <a href="{{ route('detail.edit' ,$detail['id']) }}" class="btn btn-secondary">Modifier</a>
-                            <button type="submit" class="btn btn-danger mx-3">Supprimer</button> 
+                            <a href="{{ route('detail.edit', $detail['id']) }}" class="btn btn-secondary">Modifier</a>
+                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $detail['id'] }}')">Supprimer</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    <a href="{{ route('client.index') }}" class="btn btn-dark text-light m-3 ">
-        <span class="material-symbols-outlined">undo</span>
-    Retour</a>
-    <a href="{{ route('detail.create', ['clientId' => $client->id]) }}" class="btn btn-primary mx-3">
-        <span class="material-symbols-outlined">
-            add_circle
-        </span>    
-    Caisson</a>
-    <a href="{{ url('/debitage/'.$client->id) }}" class="btn btn-success mx-3">Débutage</a>
-    <a href="{{ url('/allDebitage/'.$client->id) }}" class="btn btn-warning mx-3">Débutage Totale</a>
+   
 </div>
 <br><br><br>
 
+<script>
+    function confirmDelete(detailId) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer ce caisson ?')) {
+            document.getElementById('deleteForm' + detailId).submit();
+        }
+    }
+</script>
 
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
