@@ -87,7 +87,7 @@ class ContratController extends Controller
     
         $pdf = PDF::loadView('contrat.soldett', compact('salarier', 'contrat'));
         $pdfContent = $pdf->output();
-        $filename = $salarier->nom . '-' . $salarier->prenom . '-Contrat.pdf';
+        $filename = $salarier->nom . '-' . $salarier->prenom . '-solde_de_tt_compte.pdf';
         Storage::put('public/' . $filename, $pdfContent);
     
         return Storage::download('public/' . $filename);

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Avance;
 use App\Models\Client;
+use App\Models\DetailDevis;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 
@@ -10,8 +12,15 @@ class DevisController extends Controller
 {
     public function index()
     {
+        $detail_deviss = DetailDevis::all();
+        $avances = Avance::all();
+        $clients = Client::all();
+        
         return view('devis.index', [
-            'clients' => Client::all()
+            'detail_deviss' => $detail_deviss,
+            'clients' => $clients,
+            'avances' => $avances,
+
         ]);
     }
 

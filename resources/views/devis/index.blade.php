@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 @section('content')
 <html>
@@ -40,11 +39,11 @@
                             </a>
                         </td>
                         <td>
-                            <form action="{{ route('client.destroy', $client->id) }}" method="POST" id="deleteForm{{ $client->id }}">
+                            <form action="{{ route('client.destroy', $client->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('client.edit', $client->id) }}" class="btn btn-secondary">Modifier</a>
-                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $client->id }}')">Supprimer</button>
+                                <a href="{{ route('client.edit' ,$client->id) }}" class="btn btn-secondary">Modifier</a>
+                                <button type="submit" class="btn btn-danger mx-3" onclick="return confirmDelete()">Supprimer</button>   
                             </form>
                         </td>
                     </tr>
@@ -54,10 +53,8 @@
     </div>
 
     <script>
-        function confirmDelete(clientId) {
-            if (confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) {
-                document.getElementById('deleteForm' + clientId).submit();
-            }
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this client?");
         }
     </script>
 

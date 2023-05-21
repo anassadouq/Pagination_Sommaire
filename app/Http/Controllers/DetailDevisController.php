@@ -14,12 +14,10 @@ use App\Http\Requests\UpdateDetailDevisRequest;
 
 class DetailDevisController extends Controller
 {
-
     public function index()
     {
-        return view('detail_devis.index', [
-            'detail_deviss' => DetailDevis::all()
-        ]);
+        $detail_deviss = DetailDevis::all();
+        return view('detail_devis.index', compact('detail_deviss'));
     }
 
     public function create(Request $request)
@@ -32,28 +30,35 @@ class DetailDevisController extends Controller
     public function store(StoreDetailDevisRequest $request)
     {
         $detail_devis = new DetailDevis();
-        $detail_devis->id_client = $request->id_client;
-        $detail_devis->article = $request->article;
-        $detail_devis->qte = $request->qte;
-        $detail_devis->unite = $request->unite;
-        $detail_devis->pu = $request->pu;
-        $detail_devis->date_devis = $request->date_devis;
+        $detail_devis->id_client = $request->input('id_client');
+        $detail_devis->article = $request->input('article');
+        $detail_devis->qte = $request->input('qte');
+        $detail_devis->unite = $request->input('unite');
+        $detail_devis->pu = $request->input('pu');
+        $detail_devis->date_devis = $request->input('date_devis');
 
         $detail_devis->save();
+
         return redirect()->route('devis.index');
     }
-
-    public function edit(DetailDevis $detail_devis)
+    
+    public function edit($detail_devi)
     {
+        $detail_devis = DetailDevis::findOrFail($detail_devi);
         return view('detail_devis.edit', compact('detail_devis'));
-    }
+    }    
 
-    public function update(UpdateDetailDevisRequest $request, DetailDevis $detail_devis)
+    public function update(UpdateDetailDevisRequest $request, $id)
     {
-        $detail_devis->update($request->all());
+        $detail_devis = DetailDevis::findOrFail($id);
+    
+        $detail_devis->fill($request->only(['id_client', 'article', 'qte', 'unite', 'pu', 'date_devis']));
+    
+        $detail_devis->save();
+    
         return redirect()->route('devis.index');
     }
- 
+    
     public function show($clientId)
     {
         $client = Client::find($clientId);
@@ -69,8 +74,8 @@ class DetailDevisController extends Controller
 
         return redirect()->route('devis.index')
             ->with('success', 'Le detail_devis a été supprimé avec succès.');
-    }   
-    
+    }
+
     public function devis($clientId)
     {
         $client = Client::find($clientId);
@@ -79,6 +84,6 @@ class DetailDevisController extends Controller
 
         $pdf = PDF::loadView('detail_devis.devis', compact('detail_deviss', 'client', 'avances'));
 
-        return $pdf->download('detail_devis.devis');
+        return $pdf->download('detail_devis.pdf');
     }
 }

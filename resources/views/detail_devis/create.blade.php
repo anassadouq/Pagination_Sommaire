@@ -20,7 +20,9 @@
 				</tr>
 				<tr>
 					<td><label for="lieu">Article : </label></td>
-					<td><input type="text" name="article" class="my-4" required></td>
+					<td>
+						<textarea name="article" cols="60" rows="3" class="my-4"></textarea>
+					</td>
 				</tr>
 				<tr>
 					<td><label for="eppMat">Qte : </label></td>

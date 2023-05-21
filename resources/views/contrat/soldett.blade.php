@@ -3,38 +3,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiche2</title>
+    <title></title>
 </head>
 <body>
-    <h1 style="text-align: center; text-decoration: underline">Remise d'un document de règlement de compte</h1><br>
-    <div style="font-size: 20px; padding-right: 15px;">
-        <p>
-            Refaites cette remise pour les articles 74 et 75 du Code du travail.<br>
-            En vertu de la fin du contrat de travail conclu entre :<br>
-            L'employeur 
-            
-                <b>{{$contrat->nomSociéte}}</b>
-                Adresse <b>{{$contrat->adresseSociéte}}</b><br>
-            
-            Carte d'identité nationale <b>{{$salarier->cin}}</b> ou son représentant .............<br>
-            Et le travailleur <b>{{$salarier->nom }} {{$salarier->prenom}}</b>
-            Adresse <b>{{$salarier->adresse}}</b><br>
-            Carte d'identité nationale : <b>{{$salarier->cin}}</b><br>
-
-                Date d'embauche : <b>{{ \Carbon\Carbon::parse($contrat->dateDepart)->format('d/m/Y') }}</b> <br>
-                Date de départ : <b>{{ \Carbon\Carbon::parse($contrat->dateFinale)->format('d/m/Y') }}</b> <br>
-            
-            Le travailleur remet à son employeur ce document en vue de régler toutes les prestations et obligations qui lui sont dues.<br> 
-            Ce document de règlement comprend un montant de ..................... réparti selon les éléments suivants :<br>
-                    - Salaire journalier ..............<br>
-            - Congés annuels ............<br>
-            Ce document a été établi en deux exemplaires, l'un remis au travailleur.<br>
-            <h4 style="padding-right: 15%;">Signatures</h4> 
-            <p style="padding-right: 35px;">  Le travailleur ou son représentant &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-            L'employeur</p>
-            <br><br><br><br><br><br><br><br>
-            <h5 style="margin-top: 70px;">Selon la loi, le délai de prescription est de soixante jours.</h5>
-        </p>
-    </div>
+    <style>
+        body{
+            max-width: 1200px; /* ou toute autre valeur souhaitée */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-size: 18px;
+        }
+    </style>
+    <center><h1>Reçu pour solde de tout compte</h1></center> 
+    <p>Je soussigné(e) Monsieur/Madame, <b>{{$salarier->nom }} {{$salarier->prenom}}</b>, demeurant <b>{{$salarier->adresse}}</b>, 
+        employé(e) par <b>{{$contrat->nomSociéte}} {{$contrat->adresseSociéte}}</b>. 
+    </p>
+    <p>Reconnais avoir reçu de mon employeur, la Société <b>{{$contrat->nomSociéte}}</b>, pour solde de tout compte la somme nette de …………………………………..</p>
+    <p>Cette somme m'est versée, pour solde de tout compte, en paiement des éléments suivants :</p>
+    <p>Salaire du mois ....................................</p>
+    <p>Congés annuels .....................................</p>
+    <p>Autres .............................................</p>
+    <p>Ces sommes représentent tout ce qui m'est dû à quelque titre que ce soit, en paiement des salaires, accessoires de salaires et 
+        indemnités diverses, quel qu'en soit le montant et la nature, au titre de l'exécution et de la cessation de mon contrat de travail.
+    </p>
+    <p>Je reconnais que, du fait de ces versements, tout compte entre mon employeur et moi-même se trouve entièrement et définitivement 
+        apuré et réglé.
+    </p>
+    <p>Selon le code du travail, je peux dénoncer le présent reçu dans les 60 jours à compter de ce jour.</p>
+    <p>Le présent reçu pour solde de tout compte a été établi en deux exemplaires dont un m'a été remis.</p>
+    <p>Fait à ……………………………..  , le ………………………………………….. </p>
+    <p>Monsieur/Madame, <b>{{$salarier->nom }} {{$salarier->prenom}}</b>,</p>
+    <p>« Bon pour solde de tout compte » </p>
+    <center><p>Signature</p></center>
 </body>
 </html>

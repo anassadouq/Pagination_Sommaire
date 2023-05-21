@@ -11,16 +11,14 @@ class Devis extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'article',
-        'qte',
-        'largeur',
-        'unite',
-        'pu',
-        'num_devis',
-        'date_devis'
-    ];
-    public function clientModels()
-    {
-        return $this->hasMany(Client::class,'id');
-    }
+            'nom',
+            'lieu',
+            'eppMat',
+            'eppDer',
+        ];
+    
+        public function devis()
+        {
+            return $this->belongsTo(Devis::class, 'id');
+        }
 }

@@ -17,7 +17,6 @@ use App\Http\Controllers\DetailDevisController;
 Route::get('/', function () {
     return redirect('/login');
 });
-
 //Clients & Details
 Route::resource('client',ClientController::class);
 Route::resource('detail',DetailController::class);
