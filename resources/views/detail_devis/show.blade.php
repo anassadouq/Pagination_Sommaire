@@ -33,6 +33,7 @@
             </span> 
         Télécharger le devis</a>
         <h1 class="my-2">{{ $client->nom }} {{ $client->lieu }}</h1>
+        <h3>Num Devis : <b>{{ $client->num }}</b></h3>
     </center>
     <center>
         <table width="90%" class="text-center my-3">
@@ -42,7 +43,6 @@
                 <th>Unite</th>
                 <th>PU</th>
                 <th>Prix</th>
-                <th>Date</th>
                 <th>Suppression</th>
             </tr>
             @php
@@ -59,7 +59,6 @@
                     <td>{{ $detail_devis->unite }}</td>
                     <td>{{ $detail_devis->pu }}</td>
                     <td>{{ $prix }}</td>
-                    <td>{{ \Carbon\Carbon::parse($detail_devis->date_devis)->format('d/m/Y') }}</td>
                     <td>
                         <form action="{{ route('detail_devis.destroy', $detail_devis['id']) }}" method="POST" id="deleteForm{{ $detail_devis['id'] }}">
                             @csrf

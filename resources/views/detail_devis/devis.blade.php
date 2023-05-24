@@ -38,7 +38,7 @@
                         <td><b>{{ \Carbon\Carbon::parse($detail_devis->date_devis)->format('d/m/Y') }}</b></td>
                     @endif
                 @endforeach
-                <td><b>N°{{ $client->num }}</b></td>
+                <td><b>N{{ $client->num }}</b></td>
             </tr>
         </table><br>
         <table width="100%">

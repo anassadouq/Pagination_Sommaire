@@ -22,6 +22,7 @@
         <table id="myTable" width="70%">
             <thead>
                 <tr>
+                    <th>Num Devis</th>
                     <th>Nom</th>
                     <th>Lieu</th>
                     <th>Show</th>
@@ -31,6 +32,7 @@
             <tbody>
                 @foreach ($clients as $client)
                     <tr>
+                        <td>{{ $client->num }}</td>
                         <td>{{ $client->nom }}</td>
                         <td>{{ $client->lieu }}</td>
                         <td>

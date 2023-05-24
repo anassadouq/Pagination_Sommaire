@@ -23,6 +23,7 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         $client = new Client();
+        $client->num = $request->num;
         $client->nom = $request->nom;
         $client->lieu = $request->lieu;
         $client->eppMat = $request->eppMat;

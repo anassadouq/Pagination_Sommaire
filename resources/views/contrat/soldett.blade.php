@@ -17,8 +17,8 @@
         }
     </style>
     <center><h1>Reçu pour solde de tout compte</h1></center> 
-    <p>Je soussigné(e) Monsieur/Madame, <b>{{$salarier->nom }} {{$salarier->prenom}}</b>, demeurant <b>{{$salarier->adresse}}</b>, 
-        employé(e) par <b>{{$contrat->nomSociéte}} {{$contrat->adresseSociéte}}</b>. 
+    <p>Je soussigné(e) {{$salarier->sexe }} <b>{{$salarier->nom }} {{$salarier->prenom}}</b>, titulaire de la carte d'identité nationale : <b>{{$salarier->cin}}</b>, demeurant <b>{{$salarier->adresse}}</b>, 
+        employé(e) par <b>ste {{$contrat->nomSociéte}}</b> situé à <b>{{$contrat->adresseSociéte}}.</b> 
     </p>
     <p>Reconnais avoir reçu de mon employeur, la Société <b>{{$contrat->nomSociéte}}</b>, pour solde de tout compte la somme nette de …………………………………..</p>
     <p>Cette somme m'est versée, pour solde de tout compte, en paiement des éléments suivants :</p>
@@ -34,7 +34,7 @@
     <p>Selon le code du travail, je peux dénoncer le présent reçu dans les 60 jours à compter de ce jour.</p>
     <p>Le présent reçu pour solde de tout compte a été établi en deux exemplaires dont un m'a été remis.</p>
     <p>Fait à ……………………………..  , le ………………………………………….. </p>
-    <p>Monsieur/Madame, <b>{{$salarier->nom }} {{$salarier->prenom}}</b>,</p>
+    <p>{{$salarier->sexe }} <b>{{$salarier->nom }} {{$salarier->prenom}}</b>, titulaire de la carte d'identité nationale : <b>{{$salarier->cin}}</b>,</p>
     <p>« Bon pour solde de tout compte » </p>
     <center><p>Signature</p></center>
 </body>

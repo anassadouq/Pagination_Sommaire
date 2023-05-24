@@ -17,8 +17,8 @@
 				<tr>
 					<td><label for="sexe">Sexe : </label></td>
 					<td>
-						<input type="radio" name="sexe" value="M" class="my-4" >M
-						<input type="radio" name="sexe" value="Mme">Mme 
+						<input type="radio" name="sexe" value="Monsieur" class="my-4">M
+						<input type="radio" name="sexe" value="Madame">Mme 
 					</td>
 				</tr>
 				<tr>

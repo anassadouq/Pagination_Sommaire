@@ -20,7 +20,6 @@ class DevisController extends Controller
             'detail_deviss' => $detail_deviss,
             'clients' => $clients,
             'avances' => $avances,
-
         ]);
     }
 

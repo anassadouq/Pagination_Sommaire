@@ -45,19 +45,27 @@ class DetailDevisController extends Controller
     public function edit($detail_devi)
     {
         $detail_devis = DetailDevis::findOrFail($detail_devi);
-        return view('detail_devis.edit', compact('detail_devis'));
-    }    
-
+        $client = Client::find($detail_devis->id_client);
+        return view('detail_devis.edit', compact('detail_devis', 'client'));
+    }
+       
     public function update(UpdateDetailDevisRequest $request, $id)
     {
         $detail_devis = DetailDevis::findOrFail($id);
     
-        $detail_devis->fill($request->only(['id_client', 'article', 'qte', 'unite', 'pu', 'date_devis']));
-    
+        // Mise à jour des informations du DetailDevis
+        $detail_devis->fill($request->only(['article', 'qte', 'unite', 'pu', 'date_devis']));
         $detail_devis->save();
     
+        // Vérification et mise à jour des informations du Client
+        if ($detail_devis->id_client != $request->input('id_client')) {
+            $client = Client::find($request->input('id_client'));
+            if ($client) {
+                $client->save();
+            }
+        }
         return redirect()->route('devis.index');
-    }
+    }    
     
     public function show($clientId)
     {

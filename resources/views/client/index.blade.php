@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    
     <div class="container">
     <h1 class="text-center">Cuisines</h1>
 
@@ -26,45 +25,44 @@
                     <th>Nom</th>
                     <th>Lieu</th>
                     <th>Eppesseur Matiere</th>
-                    <th>Eppesseur Dérriere</th>
+                    <th>Eppesseur Derriere</th>
                     <th>Show</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
             @foreach ($clients as $client)
-    <tr>
-        <td>{{ $client->nom }}</td>
-        <td>{{ $client->lieu }}</td>
-        <td>{{ $client->eppMat }}cm</td>
-        <td>{{ $client->eppDer }}cm </td>
-        <td>
-            <a href="{{ route('detail.show', $client->id) }}">
-                <span class="material-symbols-outlined">ads_click</span>
-            </a>
-        </td>
-        <td>
-            <form action="{{ route('client.destroy', $client->id) }}" method="POST" id="deleteForm{{ $client->id }}">
-                @csrf
-                @method('DELETE')
-                <a href="{{ route('client.edit', $client->id) }}" class="btn btn-secondary">Modifier</a>
-                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $client->id }}')">Supprimer</button>
-            </form>
-        </td>
-    </tr>
-@endforeach
+                <tr>
+                    <td>{{ $client->nom }}</td>
+                    <td>{{ $client->lieu }}</td>
+                    <td>{{ $client->eppMat }}cm</td>
+                    <td>{{ $client->eppDer }}cm </td>
+                    <td>
+                        <a href="{{ route('detail.show', $client->id) }}">
+                            <span class="material-symbols-outlined">ads_click</span>
+                        </a>
+                    </td>
+                    <td>
+                        <form action="{{ route('client.destroy', $client->id) }}" method="POST" id="deleteForm{{ $client->id }}">
+                            @csrf
+                            @method('DELETE')
+                            <a href="{{ route('client.edit', $client->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
+                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $client->id }}')" id="btn">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>    
     </div>
-
     
     <script>
-    function confirmDelete(clientId) {
-        if (confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) {
-            document.getElementById('deleteForm' + clientId).submit();
+        function confirmDelete(clientId) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) {
+                document.getElementById('deleteForm' + clientId).submit();
+            }
         }
-    }
-</script>
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
