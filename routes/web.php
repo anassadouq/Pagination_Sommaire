@@ -9,8 +9,10 @@ use App\Http\Controllers\DetailController;
 use App\Http\Controllers\ContratController;
 use App\Http\Controllers\PlacardController;
 use App\Http\Controllers\SalarierController;
-use App\Http\Controllers\DetailPlacardController;
+use App\Http\Controllers\ReglementController;
 use App\Http\Controllers\DetailDevisController;
+use App\Http\Controllers\FournisseurController;
+use App\Http\Controllers\DetailPlacardController;
 
 
 // Redirigez la page d'accueil vers la page de connexion
@@ -43,3 +45,8 @@ Route::resource('devis',DevisController::class);
 Route::resource('detail_devis',DetailDevisController::class);
 Route::resource('avance',AvanceController::class);
 Route::get('/devis/{clientId}/pdf', [DetailDevisController::class, 'devis'])->name('devis.pdf');
+
+//Fournisseurs
+Route::resource('fournisseur',FournisseurController::class);
+Route::resource('reglement',ReglementController::class);
+
