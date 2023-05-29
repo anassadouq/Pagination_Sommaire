@@ -23,40 +23,52 @@
                 <span class="material-symbols-outlined">add</span>
             </button>
         </a>
+        <div class="row">
+            <table class="col-7">
+                <tr>
+                    <td>Solde</td>
+                    <td><input type="text" name="solde" id="soldeInput"></td>
+                </tr>
+                <tr>
+                    <td>Montant à Encaisser</td>
+                    <td><input type="text" name="montantEncaisser" id="montantEncaisserInput"></td>
+                </tr>
+                <tr>
+                    <td>Autre Charge</td>
+                    <td>
+                        <input type="text" name="autreCharge" id="autreChargeInput">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date Debut</td>
+                    <td><input type="date" name="filterDateD" id="filterDateDInput"></td>
+                </tr>
+                <tr>
+                    <td>Date Fin</td>
+                    <td>
+                        <input type="date" name="filterDateF" id="filterDateFInput">
+                        <button onclick="calculateReste()" class="btn btn-success mx-2">Clicker</button>
+                    </td>
+                </tr>
+            </table>
 
-        <table class="my-2">
-            <tr>
-                <td>Solde</td>
-                <td><input type="text" name="solde" id="soldeInput"></td>
-            </tr>
-            <tr>
-                <td>Montant à Encaisser</td>
-                <td><input type="text" name="montantEncaisser" id="montantEncaisserInput"></td>
-            </tr>
-            <tr>
-                <td>Autre Charge</td>
-                <td>
-                    <input type="text" name="autreCharge" id="autreChargeInput">
-                </td>
-            </tr>
-            <tr>
-                <td>Date</td>
-                <td>
-                    <span>DateD : </span><input type="date" name="filterDateD" id="filterDateDInput">
-                    <span>DateF : </span><input type="date" name="filterDateF" id="filterDateFInput">
-                    <button onclick="calculateReste()" class="btn btn-success mx-2">Clicker</button>
-                </td>                
-            </tr>
-        </table>
+            <table class="text-center col-3" style="width:30%">
+                <tr>
+                    <th class="text-danger">Prevision</th>
+                </tr>
+                <tr id="table" class="bg-danger text-light">
+                    <td id="resteOutput" id="table"></td>
+                </tr>
+                <tr>
+                    <th class="text-light"><br></th>
+                </tr>
+                <tr>
+                    <td class="text-light"><br></td>
+                </tr>
+            </table>
+        </div>
         
-        <table width="20%" class="text-center">
-            <tr>
-                <th>Reste</th>
-            </tr>
-            <tr id="table">
-                <td id="resteOutput" id="table"></td>
-            </tr>
-        </table><br>
+        <br>
 
         @php
             $totalCheque = 0;
