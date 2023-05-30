@@ -17,7 +17,6 @@
 
     <div class="container">
         <h1 class="text-center">Règlements</h1>
-        <a href="{{route('fournisseur.index')}}" class="btn btn-info mx-3">Fournisseurs</a><br>
         <a href="{{route('reglement.create')}}" >
             <button class="btn btn-primary my-2 mx-3" style="width:85px">
                 <span class="material-symbols-outlined">add</span>

@@ -40,6 +40,9 @@
                             <a class="nav-link" href="{{ route('devis.index') }}">Devis</a>
                         </li>
                         @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('fournisseur.index') }}">Fournisseur</a>
+                        </li>
                         @if (Auth::user()->email == "younes@gmail.com")
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('reglement.index') }}">Règlements</a>

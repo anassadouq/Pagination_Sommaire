@@ -49,4 +49,3 @@ Route::get('/devis/{clientId}/pdf', [DetailDevisController::class, 'devis'])->na
 //Fournisseurs
 Route::resource('fournisseur',FournisseurController::class);
 Route::resource('reglement',ReglementController::class);
-

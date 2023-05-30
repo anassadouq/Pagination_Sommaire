@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-@if (Auth::user()->email == "younes@gmail.com")
-
     <div class="container">
     <h1 class="text-center">Fournisseurs</h1>
 
@@ -106,6 +104,5 @@
     </script>
 </body>
 </html>
-@endif
 @endsection
 @endauth

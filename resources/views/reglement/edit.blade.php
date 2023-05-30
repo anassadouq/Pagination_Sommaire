@@ -32,7 +32,8 @@
             <tr>
                 <td><b>Reglement</b></td>
                 <td> : 
-                    <input type="text" name="reglement" value="{{ $reglement->reglement }}" class="my-4">
+                    <input type="checkbox" name="reglement" value="Oui" class="my-4">Oui
+                    <input type="checkbox" name="reglement" value="Non" class="my-4">Non
                     <input type="submit" class="btn btn-secondary mx-2" value="Modifier reglement" href="{{ route('reglement.index') }}">
                 </td>
             </tr>
