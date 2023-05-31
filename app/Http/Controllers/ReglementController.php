@@ -38,8 +38,9 @@ class ReglementController extends Controller
 
     public function edit(Reglement $reglement)
     {
-        return view('reglement.edit', compact('reglement'));
-    }
+        $fournisseurs = Fournisseur::all();
+        return view('reglement.edit', compact('reglement', 'fournisseurs'));
+    }    
 
     public function update(UpdateReglementRequest $request, Reglement $reglement)
     {

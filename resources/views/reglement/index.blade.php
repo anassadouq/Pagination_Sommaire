@@ -4,6 +4,9 @@
 <html>
 <head>
 	<title>Règlements</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.4/datatables.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -73,41 +76,42 @@
             $totalCheque = 0;
             $totalEffet = 0;
         @endphp
-
-        <table width="100%" class="text-center my-2" id="tableCheque">
-            <tr>
-                <th class="text-light bg-dark" id="table">Chèque</th>
-            </tr>
-            <tr id="table">
-                <th id="table">N° chèque</th>
-                <th id="table">Montant</th>
-                <th id="table">Date</th>
-                <th id="table">Type</th>
-                <th id="table">Fournisseur</th>
-                <th id="table">Actions</th>
-            </tr>
-            @foreach ($reglements as $reglement)
-                @if ($reglement->type === 'Chèque')
-                    <tr id="tableChequeRow" data-date="{{ $reglement->date }}">
-                        <td id="table">{{ $reglement->num }}</td>
-                        <td id="table">{{ $reglement->montant }}</td>
-                        <td id="table">{{ \Carbon\Carbon::parse($reglement->date)->format('d/m/Y') }}</td>
-                        <td id="table">{{ $reglement->type }}</td>
-                        <td id="table">{{ $reglement->fournisseur->nom }}</td>
-                        <td id="table">
-                            <form action="{{ route('reglement.destroy', $reglement->id) }}" method="POST" id="deleteForm{{ $reglement->id }}">
-                                @csrf
-                                @method('DELETE')
-                                <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
-                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">Supprimer</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @php
-                        $totalCheque += $reglement->montant;
-                    @endphp
-                @endif
-            @endforeach
+        <b style="font-size:30px">Chèque</b>
+        <table width="100%" class="text-center" id="tableCheque">
+            <thead>
+                <tr id="table">
+                    <th id="table">N° chèque</th>
+                    <th id="table">Montant</th>
+                    <th id="table">Date</th>
+                    <th id="table">Type</th>
+                    <th id="table">Fournisseur</th>
+                    <th id="table">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($reglements as $reglement)
+                    @if ($reglement->type === 'Chèque')
+                        <tr id="tableChequeRow" data-date="{{ $reglement->date }}">
+                            <td id="table">{{ $reglement->num }}</td>
+                            <td id="table">{{ $reglement->montant }}</td>
+                            <td id="table">{{ \Carbon\Carbon::parse($reglement->date)->format('d/m/Y') }}</td>
+                            <td id="table">{{ $reglement->type }}</td>
+                            <td id="table">{{ $reglement->fournisseur->nom }}</td>
+                            <td id="table">
+                                <form action="{{ route('reglement.destroy', $reglement->id) }}" method="POST" id="deleteForm{{ $reglement->id }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
+                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @php
+                            $totalCheque += $reglement->montant;
+                        @endphp
+                    @endif
+                @endforeach
+            </tbody>
         </table>
 
         <table width="25%" class="text-center" id="table">
@@ -117,42 +121,43 @@
             <tr id="table">
                 <td id="totalCheque" id="table">{{ $totalCheque }}</td>
             </tr>
-        </table><br>
-
-        <table width="100%" class="text-center my-2" id="tableEffet">
-            <tr>
-                <th class="text-light bg-dark" id="table">Effet</th>
-            </tr>
-            <tr id="table">
-                <th id="table">N° Effet</th>
-                <th id="table">Montant</th>
-                <th id="table">Date</th>
-                <th id="table">Type</th>
-                <th id="table">Fournisseur</th>
-                <th id="table">Actions</th>
-            </tr>
-            @foreach ($reglements as $reglement)
-                @if ($reglement->type === 'Effet')
-                    <tr id="tableEffetRow" data-date="{{ $reglement->date }}">
-                        <td id="table">{{ $reglement->num }}</td>
-                        <td id="table">{{ $reglement->montant }}</td>
-                        <td id="table">{{ \Carbon\Carbon::parse($reglement->date)->format('d/m/Y') }}</td>
-                        <td id="table">{{ $reglement->type }}</td>
-                        <td id="table">{{ $reglement->fournisseur->nom }}</td>
-                        <td id="table">
-                            <form action="{{ route('reglement.destroy', $reglement->id) }}" method="POST" id="deleteForm{{ $reglement->id }}">
-                                @csrf
-                                @method('DELETE')
-                                <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
-                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">Supprimer</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @php
-                        $totalEffet += $reglement->montant;
-                    @endphp
-                @endif
-            @endforeach
+        </table><br><br>
+        <b style="font-size:30px">Effet</b>
+        <table width="100%" class="text-center" id="tableEffet">
+            <thead>
+                <tr id="table">
+                    <th id="table">N° Effet</th>
+                    <th id="table">Montant</th>
+                    <th id="table">Date</th>
+                    <th id="table">Type</th>
+                    <th id="table">Fournisseur</th>
+                    <th id="table">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($reglements as $reglement)
+                    @if ($reglement->type === 'Effet')
+                        <tr id="tableEffetRow" data-date="{{ $reglement->date }}">
+                            <td id="table">{{ $reglement->num }}</td>
+                            <td id="table">{{ $reglement->montant }}</td>
+                            <td id="table">{{ \Carbon\Carbon::parse($reglement->date)->format('d/m/Y') }}</td>
+                            <td id="table">{{ $reglement->type }}</td>
+                            <td id="table">{{ $reglement->fournisseur->nom }}</td>
+                            <td id="table">
+                                <form action="{{ route('reglement.destroy', $reglement->id) }}" method="POST" id="deleteForm{{ $reglement->id }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
+                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @php
+                            $totalEffet += $reglement->montant;
+                        @endphp
+                    @endif
+                @endforeach
+            </tbody>
         </table>
 
         <table width="25%" class="text-center" id="table">
@@ -209,6 +214,47 @@
             }
         }
     </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#tableCheque').DataTable( {
+                dom: 'Blfrtip',
+                lengthChange: false, // disable length change dropdown
+                paging: false, // disable pagination
+                buttons: [],
+                language: {
+                    info: "", // hide "Showing" text
+                    infoEmpty: "" // hide "Showing 0 to 0 of 0 entries" text
+                }
+            });
+        });
+    </script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#tableEffet').DataTable( {
+                dom: 'Blfrtip',
+                lengthChange: false, // disable length change dropdown
+                paging: false, // disable pagination
+                buttons: [],
+                language: {
+                    info: "", // hide "Showing" text
+                    infoEmpty: "" // hide "Showing 0 to 0 of 0 entries" text
+                }
+            });
+        });
+    </script>
+
 
 
 </body>
