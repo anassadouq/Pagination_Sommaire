@@ -56,9 +56,9 @@
 
             <table class="text-center col-3" style="width:30%">
                 <tr>
-                    <th class="text-danger">Prevision</th>
+                    <th>Prevision</th>
                 </tr>
-                <tr id="table" class="bg-danger text-light">
+                <tr id="table">
                     <td id="resteOutput" id="table"></td>
                 </tr>
                 <tr>
@@ -68,15 +68,14 @@
                     <td class="text-light"><br></td>
                 </tr>
             </table>
-        </div>
-        
-        <br>
-
+        </div><br>
         @php
             $totalCheque = 0;
             $totalEffet = 0;
+            $totalRegler = 0;
         @endphp
         <b style="font-size:30px">Chèque</b>
+
         <table width="100%" class="text-center" id="tableCheque">
             <thead>
                 <tr id="table">
@@ -90,7 +89,7 @@
             </thead>
             <tbody>
                 @foreach ($reglements as $reglement)
-                    @if ($reglement->type === 'Chèque')
+                    @if ($reglement->type === 'Chèque' && $reglement->reglement ==='Non')
                         <tr id="tableChequeRow" data-date="{{ $reglement->date }}">
                             <td id="table">{{ $reglement->num }}</td>
                             <td id="table">{{ $reglement->montant }}</td>
@@ -121,7 +120,7 @@
             <tr id="table">
                 <td id="totalCheque" id="table">{{ $totalCheque }}</td>
             </tr>
-        </table><br><br>
+        </table><br>
         <b style="font-size:30px">Effet</b>
         <table width="100%" class="text-center" id="tableEffet">
             <thead>
@@ -136,7 +135,7 @@
             </thead>
             <tbody>
                 @foreach ($reglements as $reglement)
-                    @if ($reglement->type === 'Effet')
+                    @if ($reglement->type === 'Effet' && $reglement->reglement ==='Non')
                         <tr id="tableEffetRow" data-date="{{ $reglement->date }}">
                             <td id="table">{{ $reglement->num }}</td>
                             <td id="table">{{ $reglement->montant }}</td>
@@ -166,6 +165,52 @@
             </tr>
             <tr id="table">
                 <td id="totalEffet" id="table">{{ $totalEffet }}</td> 
+            </tr>
+        </table><br>
+
+        <b style="font-size:30px">Chèque & Effet Régler</b>
+        <table width="100%" class="text-center my-4" id="tableReglement">
+            <thead>
+                <tr id="table">
+                    <th id="table">N°</th>
+                    <th id="table">Montant</th>
+                    <th id="table">Date</th>
+                    <th id="table">Type</th>
+                    <th id="table">Fournisseur</th>
+                    <th id="table">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($reglements as $reglement)
+                    @if ($reglement->reglement === 'Oui')
+                        <tr>
+                            <td id="table">{{ $reglement->num }}</td>
+                            <td id="table">{{ $reglement->montant }}</td>
+                            <td id="table">{{ \Carbon\Carbon::parse($reglement->date)->format('d/m/Y') }}</td>
+                            <td id="table">{{ $reglement->type }}</td>
+                            <td id="table">{{ $reglement->fournisseur->nom }}</td>
+                            <td id="table">
+                                <form action="{{ route('reglement.destroy', $reglement->id) }}" method="POST" id="deleteForm{{ $reglement->id }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
+                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @php
+                            $totalRegler += $reglement->montant;
+                        @endphp
+                    @endif
+                @endforeach
+            </tbody>
+        </table>
+        <table width="25%" class="text-center" id="table">
+            <tr id="table">
+                <th id="table">Totale</th>
+            </tr>
+            <tr id="table">
+                <td id="table">{{ $totalRegler }}</td> 
             </tr>
         </table>
     </div>
@@ -207,6 +252,15 @@
 
             document.getElementById('totalCheque').textContent = totalCheque.toFixed(2);
             document.getElementById('totalEffet').textContent = totalEffet.toFixed(2);
+            var resteOutput = document.getElementById('resteOutput');
+            if (resteOutput.innerText > 0) {
+                resteOutput.classList.add('text-light');
+                resteOutput.classList.add('bg-success');
+            }
+            if (resteOutput.innerText < 0) {
+                resteOutput.classList.add('text-light');
+                resteOutput.classList.add('bg-danger');
+            }
         }
         function confirmDelete(reglementId) {
             if (confirm('Are you sure you want to delete this item?')) {
@@ -255,8 +309,20 @@
         });
     </script>
 
-
-
+    <script>
+        $(document).ready(function() {
+            $('#tableReglement').DataTable( {
+                dom: 'Blfrtip',
+                lengthChange: false, // disable length change dropdown
+                paging: false, // disable pagination
+                buttons: [],
+                language: {
+                    info: "", // hide "Showing" text
+                    infoEmpty: "" // hide "Showing 0 to 0 of 0 entries" text
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 @endif

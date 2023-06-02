@@ -1,4 +1,3 @@
-@auth
 @extends('layouts.app')
 @section('content')
 <html>
@@ -12,13 +11,13 @@
 </head>
 <body>
     <div class="container">
-    <h1 class="text-center">Cuisines</h1>
+        <h1 class="text-center">Cuisines</h1>
 
-    <a href="{{route('client.create')}}" >
-        <button class="btn btn-primary my-4" style="width:85px">
-            <span class="material-symbols-outlined">add</span>
-        </button>
-    </a>
+        <a href="{{route('client.create')}}" >
+            <button class="btn btn-primary my-4" style="width:85px">
+                <span class="material-symbols-outlined">add</span>
+            </button>
+        </a>
         <table class="text-center" id="myTable">
             <thead>
                 <tr>
@@ -113,4 +112,3 @@
 </body>
 </html>
 @endsection
-@endauth

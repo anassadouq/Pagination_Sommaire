@@ -25,6 +25,7 @@
                     <th>Nom</th>
                     <th>Adresse</th>
                     <th>Telephone</th>
+                    <th>Show</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -34,6 +35,11 @@
                     <td>{{ $fournisseur->nom }}</td>
                     <td>{{ $fournisseur->adresse }}</td>
                     <td>{{ $fournisseur->tel }}</td>
+                    <td>
+                        <a href="{{ route('detail_fournisseur.show', $fournisseur->id) }}">
+                            <span class="material-symbols-outlined">ads_click</span>
+                        </a>
+                    </td>
                     <td>
                         <form action="{{ route('fournisseur.destroy', $fournisseur->id) }}" method="POST" id="deleteForm{{ $fournisseur->id }}">
                             @csrf

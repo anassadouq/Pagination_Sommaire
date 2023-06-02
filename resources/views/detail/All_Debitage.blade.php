@@ -53,7 +53,7 @@
                     <td>{{$detail->profondeur}}</td>
                     <td>{{$detail->qte *2}}</td>
                 @endif
-                @if($detail->image == "caisson5.png" || $detail->image == "colonne2.png")
+                @if( $detail->image == "colonne2.png")
                     <td>{{$detail->hauteur - $client->eppMat *2}}</td>
                     <td>{{$detail->profondeur}}</td>
                     <td>{{$detail->qte *2}}</td>
@@ -68,7 +68,7 @@
                     <td>{{$detail->profondeur}}</td>
                     <td>{{$detail->qte * 2}}</td>
                 @endif
-                @if($detail->image == "colonne1.png")
+                @if($detail->image == "colonne1.png" || $detail->image == "caisson5.png")
                     <td>{{$detail->largeur}}</td>
                     <td>{{$detail->profondeur}}</td>
                     <td>{{$detail->qte * 2}}</td>
