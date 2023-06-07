@@ -49,7 +49,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td><label for="reglement">Reglement : </label></td>
+					<td><label for="reglement">Régler : </label></td>
 					<td>
 						<input type="checkbox" name="reglement" value="Oui" class="my-4"> Oui
 						<input type="checkbox" name="reglement" value="Non" class="my-4"> Non

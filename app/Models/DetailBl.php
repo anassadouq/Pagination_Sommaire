@@ -21,8 +21,9 @@ class DetailBl extends Model
 
     public function bl()
     {
-        return $this->belongsTo(Bl::class, 'id');
+        return $this->belongsTo(Bl::class, 'id_bl');
     }
+
     public function detail_bl()
     {
         return $this->belongsTo(Fournisseur::class, 'id_fournisseur');

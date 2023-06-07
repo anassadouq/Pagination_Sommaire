@@ -32,11 +32,7 @@
                     @foreach ($detail_bls as $detail_bl)
                         <tr>
                             <td>
-                                @foreach ($fournisseurs as $fournisseur)
-                                    @if ($fournisseur->id === $detail_bl->id)
-                                        {{ $fournisseur->nom }}
-                                    @endif
-                                @endforeach
+                                {{ $detail_bl->bl->fournisseur->nom }}
                             </td>
                             <td>{{ $detail_bl->code }}</td>
                             <td>{{ $detail_bl->designation }}</td>
