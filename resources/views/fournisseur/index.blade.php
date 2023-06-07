@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
+@if (Auth::user()->email == "younes@gmail.com")
+
     <div class="container">
     <h1 class="text-center">Fournisseurs</h1>
 
@@ -19,6 +21,7 @@
             <span class="material-symbols-outlined">add</span>
         </button>
     </a>
+    <a href="{{url('/liste_articles')}}" class="mx-3 btn btn-info">Liste Articles</a>
         <table id="myTable">
             <thead>
                 <tr>
@@ -36,7 +39,7 @@
                     <td>{{ $fournisseur->adresse }}</td>
                     <td>{{ $fournisseur->tel }}</td>
                     <td>
-                        <a href="{{ route('detail_fournisseur.show', $fournisseur->id) }}">
+                        <a href="{{ route('bl.show', $fournisseur->id) }}">
                             <span class="material-symbols-outlined">ads_click</span>
                         </a>
                     </td>
@@ -51,7 +54,7 @@
                 </tr>
             @endforeach
             </tbody>
-        </table>    
+        </table>
     </div>
     
     <script>
@@ -108,6 +111,7 @@
             });
         });
     </script>
+    @endif
 </body>
 </html>
 @endsection

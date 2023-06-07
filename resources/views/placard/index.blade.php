@@ -12,7 +12,7 @@
 </head>
 <body>
     
-    <div class="container">
+    <div class="mx-2">
     <h1 class="text-center">Placards</h1>
 
     <a href="{{route('client.create')}}" >

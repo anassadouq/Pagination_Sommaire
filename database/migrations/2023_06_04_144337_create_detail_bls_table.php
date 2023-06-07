@@ -8,21 +8,23 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('reglements', function (Blueprint $table) {
+        Schema::create('detail_bls', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_bl');
+            $table->foreign('id_bl')->references('id')->on('bls')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('id_fournisseur');
             $table->foreign('id_fournisseur')->references('id')->on('fournisseurs')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('num');
-            $table->float('montant');
-            $table->date('date');
-            $table->string('type');
-            $table->string('reglement');
+            $table->string('code');
+            $table->string('designation');
+            $table->float('qte');
+            $table->float('pu');
+            $table->string('unite');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('reglements');
+        Schema::dropIfExists('detail_bls');
     }
 };

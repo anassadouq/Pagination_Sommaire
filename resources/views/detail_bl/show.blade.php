@@ -20,23 +20,25 @@
         }
     </style>
     <center> 
-        <a href="{{ route('detail_fournisseur.create', ['fournisseurId' => $fournisseur->id]) }}" class="btn btn-primary mx-2">
+        <a href="{{ route('detail_bl.create', ['blId' => $bl->id]) }}" class="btn btn-primary mx-2">
             <span class="material-symbols-outlined">add_circle</span>    
-        Désignation</a>
+            Désignation
+        </a>
 
-        <a href="{{ route('designation.pdf', ['fournisseurId' => $fournisseur->id]) }}" class="btn btn-warning">
-            <span class="material-symbols-outlined">download</span> 
-        Télécharger</a>
-
-        <h1 class="my-2">{{ $fournisseur->nom }}</h1>
-        <h1>{{ $fournisseur->adresse }}</h1>
-        <div class="container">
+        <a href="{{ route('detail_bl.pdf', ['blId' => $bl->id]) }}" class="btn btn-warning">
+            <span class="material-symbols-outlined">
+                download
+            </span>
+        Télécharger en PDF</a>
+        <h2>Date : {{ \Carbon\Carbon::parse($bl->date)->format('d/m/Y') }}</h2>
+        <h2>Numéro {{$bl->type}} : {{ $bl->num }}</h2>        
+        <div class="mx-3">
             <table class="text-center my-3" id="designations">
                 <thead>
                     <tr>
-                        <th>Date</th>
                         <th>Code</th>
                         <th>Désignation</th>
+                        <th>Unite</th>
                         <th>Qte</th>
                         <th>Prix Unitaire HT</th>
                         <th>Prix Total HT</th>
@@ -47,31 +49,31 @@
                     $total = 0;
                 @endphp
                 <tbody>
-                    @foreach ($detail_fournisseurs as $detail_fournisseur)
+                    @foreach ($detail_bls as $detail_bl)
                         @php
-                            $prix = $detail_fournisseur->qte * $detail_fournisseur->pu;
+                            $prix = $detail_bl->qte * $detail_bl->pu;
                             $total += $prix;
                         @endphp
                         <tr>
-                            <td>{{ \Carbon\Carbon::parse($detail_fournisseur->date)->format('d/m/Y') }}</td>
-                            <td>{{ $detail_fournisseur->code }}</td>
-                            <td>{{ $detail_fournisseur->designation }}</td>
-                            <td>{{ $detail_fournisseur->qte }}</td>
-                            <td>{{ $detail_fournisseur->pu }}</td>
-                            <td>{{ $detail_fournisseur->pu * $detail_fournisseur->qte }}</td>
+                            <td>{{ $detail_bl->code }}</td>
+                            <td>{{ $detail_bl->designation }}</td>
+                            <td>{{ $detail_bl->unite }}</td>
+                            <td>{{ $detail_bl->qte }}</td>
+                            <td>{{ $detail_bl->pu }}</td>
+                            <td>{{ $detail_bl->pu * $detail_bl->qte }}</td>
                             <td>
-                                <form action="{{ route('detail_fournisseur.destroy', $detail_fournisseur['id']) }}" method="POST" id="deleteForm{{ $detail_fournisseur['id'] }}">
+                                <form action="{{ route('detail_bl.destroy', $detail_bl['id']) }}" method="POST" id="deleteForm{{ $detail_bl['id'] }}">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('detail_fournisseur.edit', $detail_fournisseur['id']) }}" class="btn btn-secondary">Modifier</a>
-                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $detail_fournisseur['id'] }}')">Supprimer</button> 
+                                    <a href="{{ route('detail_bl.edit', $detail_bl['id']) }}" class="btn btn-secondary">Modifier</a>
+                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $detail_bl['id'] }}')">Supprimer</button> 
                                 </form>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-        
+
             <table width="90%" class="text-center">
                 <tr>
                     <th>Montant Total : HT</th>
@@ -81,9 +83,9 @@
                 </tr>
                 <tr>
                     <td>{{ $total }}</td>
-                    <td>20%</td>
-                    <td>{{ $total * 0.2}}</td>
-                    <td>{{ $total + ($total * 0.2)}}</td>
+                    <td>{{ $bl->tva }}%</td>
+                    <td>{{ ($total * $bl->tva)/100}}</td>
+                    <td>{{ $total +(($total * $bl->tva)/100) }}</td>
                 </tr>
             </table>
         </div>

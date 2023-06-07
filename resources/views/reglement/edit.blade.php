@@ -34,7 +34,7 @@
                 <td> : 
                     <input type="checkbox" name="reglement" value="Oui" class="my-4">Oui
                     <input type="checkbox" name="reglement" value="Non" class="my-4">Non
-                    <input type="submit" class="btn btn-secondary mx-2" value="Modifier reglement" href="{{ route('reglement.index') }}">
+                    <input type="submit" class="btn btn-secondary mx-2" value="Modifier Réglement" href="{{ route('reglement.index') }}">
                 </td>
             </tr>
         </table>  

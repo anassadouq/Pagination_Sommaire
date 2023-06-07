@@ -11,7 +11,7 @@
 </head>
 <body>
 @if (Auth::user()->email == "younes@gmail.com")
-    <div class="container">
+    <div class="mx-2">
     <h1 class="text-center">Devis</h1>
 
     <a href="{{route('client.create')}}" >

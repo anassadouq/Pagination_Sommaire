@@ -1,4 +1,3 @@
-@auth
 <html>
 <head>
 	<title>Create Fournisseur</title>
@@ -29,7 +28,7 @@
 					<td><label for="tel">Tel : </label></td>
 					<td>
 						<input type="text" placeholder="Telephone Fournisseur" name="tel" required class="my-4">
-						<button type="submit" class="btn btn-primary mx-2">Créer fournisseur</button>
+						<button type="submit" class="btn btn-primary mx-2">Créer Fournisseur</button>
 					</td>
 				</tr>
 			</table>
@@ -37,4 +36,3 @@
 	</form>
 </body>
 </html>
-@endauth

@@ -8,30 +8,24 @@
             @csrf
             @method('PUT')
             <tr>
-                <td><b>article</b></td>
+                <td><b>Article</b></td>
                 <input type="hidden" name="id_client" value="{{ $detail_devis->id_client }}">
                 <td><textarea name="article" cols="60" rows="3" class="my-3">{{ $detail_devis->article }}</textarea></td>
             </tr>
             <tr>
-                <td><b>qte</b></td>
+                <td><b>Qte</b></td>
                 <td> : <input type="text" name="qte" value="{{ $detail_devis->qte }}" class="my-3"></td>
             </tr>
             <tr>
-                <td><b>unite</b></td>
+                <td><b>Unite</b></td>
                 <td> : <input type="text" name="unite" value="{{ $detail_devis->unite }}" class="my-3"></td>
             </tr>
             <tr>
-                <td><b>pu</b></td>
-                <td> : <input type="text" name="pu" value="{{ $detail_devis->pu }}" class="my-3"></td> 
-            </tr>
-            <tr>
-                <td>
+                <td><b>Pu</b></td>
+                <td> : 
+                    <input type="text" name="pu" value="{{ $detail_devis->pu }}" class="my-3">
                     <input type="submit" class="btn btn-secondary mx-2" value="Modifier Article" href="{{ route('detail_devis.index') }}">
                 </td> 
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
             </tr>
         </table>
     </center>         

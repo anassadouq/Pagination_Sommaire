@@ -35,14 +35,17 @@ class DetailController extends Controller
         $detail->largeur = $request->largeur;
         $detail->profondeur = $request->profondeur;
         $detail->qte = $request->qte;
-
+    
         if ($request->hasFile('image')) {
             $detail->image = $request->image->getClientOriginalName();
             $request->image->move(public_path('images'), $detail->image);
         }
+        
         $detail->save();
-        return redirect()->route('client.index');
-    }
+    
+        // Redirect to the same page with the detail ID
+        return redirect()->route('detail.show', ['clientId' => $request->id_client]);
+    }    
 
     public function edit(Detail $detail)
     {
@@ -52,7 +55,7 @@ class DetailController extends Controller
     public function update(UpdateDetailRequest $request, Detail $detail)
     {
         $detail->update($request->except('image')); // mise à jour des autres attributs du détail
-        
+    
         // mise à jour de l'image si une nouvelle a été téléchargée
         if ($request->hasFile('image')) {
             $imagePath = public_path('images/'.$detail->image); // supprimez l'ancienne image
@@ -61,11 +64,13 @@ class DetailController extends Controller
             }
             $detail->image = $request->image->getClientOriginalName();
             $request->image->move(public_path('images'), $detail->image);
-            $detail->save();
         }
         
-        return redirect()->route('client.index');
-    }    
+        $detail->save();
+        
+        // Redirect to the same page with the detail ID
+        return redirect()->route('detail.show', ['clientId' => $detail->id_client]);
+    }       
 
     public function show($clientId)
     {
@@ -77,11 +82,13 @@ class DetailController extends Controller
     public function destroy($id)
     {
         $detail = Detail::findOrFail($id);
+        $clientId = $detail->id_client; // Get the client ID before deleting the detail
         $detail->delete();
-
-        return redirect()->route('client.index')
+    
+        // Redirect to the same page with the client ID
+        return redirect()->route('detail.show', ['clientId' => $clientId])
             ->with('success', 'Le detail a été supprimé avec succès.');
-    }
+    }    
 
     public function debitage($clientId)
     {

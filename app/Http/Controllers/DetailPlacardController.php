@@ -36,16 +36,17 @@ class DetailPlacardController extends Controller
         $detail_placard->profondeur = $request->profondeur;
         $detail_placard->qte = $request->qte;
         $detail_placard->appartement = $request->appartement;
-
-
+    
         if ($request->hasFile('image')) {
             $detail_placard->image = $request->image->getClientOriginalName();
             $request->image->move(public_path('images'), $detail_placard->image);
         }
         
         $detail_placard->save();
-        return redirect()->route('placard.index');
-    }
+        
+        // Redirect to the same page with the client ID
+        return redirect()->route('detail_placard.show', ['clientId' => $request->id_client]);
+    }    
 
     public function edit(DetailPlacard $detail_placard)
     {
@@ -63,11 +64,13 @@ class DetailPlacardController extends Controller
             }
             $detail_placard->image = $request->file('image')->getClientOriginalName();
             $request->file('image')->move(public_path('images'), $detail_placard->image);
-            $detail_placard->save();
         }
             
-        return redirect()->route('placard.index');
-    }      
+        $detail_placard->save();
+            
+        // Redirect to the same page with the client ID
+        return redirect()->route('detail_placard.show', ['clientId' => $detail_placard->id_client]);
+    }        
 
     public function show($clientId)
     {
@@ -79,11 +82,13 @@ class DetailPlacardController extends Controller
     public function destroy($id)
     {
         $detail_placard = DetailPlacard::findOrFail($id);
+        $clientId = $detail_placard->id_client; // Get the client ID before deleting the detail_placard
         $detail_placard->delete();
-
-        return redirect()->route('placard.index')
+    
+        // Redirect to the same page with the client ID
+        return redirect()->route('detail_placard.show', ['clientId' => $clientId])
             ->with('success', 'Le detail_placard a été supprimé avec succès.');
-    }
+    }    
 
     public function debitage($clientId)
     {

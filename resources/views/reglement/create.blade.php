@@ -53,7 +53,7 @@
 					<td>
 						<input type="checkbox" name="reglement" value="Oui" class="my-4"> Oui
 						<input type="checkbox" name="reglement" value="Non" class="my-4"> Non
-						<button type="submit" class="btn btn-primary mx-2">Créer reglement</button>
+						<button type="submit" class="btn btn-primary mx-2">Créer Réglement</button>
 					</td>
 				</tr>
 			</table>

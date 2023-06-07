@@ -36,11 +36,12 @@ class DetailDevisController extends Controller
         $detail_devis->unite = $request->input('unite');
         $detail_devis->pu = $request->input('pu');
         $detail_devis->date_devis = $request->input('date_devis');
-
         $detail_devis->save();
-
-        return redirect()->route('devis.index');
-    }
+    
+        $clientId = $detail_devis->id_client; // Obtenez l'ID du client correspondant au détail créé
+    
+        return redirect()->route('detail_devis.show', ['clientId' => $clientId])->with('success', 'Le détail de devis a été créé avec succès.');
+    }    
     
     public function edit($detail_devi)
     {
@@ -64,8 +65,11 @@ class DetailDevisController extends Controller
                 $client->save();
             }
         }
-        return redirect()->route('devis.index');
-    }    
+    
+        $clientId = $detail_devis->id_client; // Obtenez l'ID du client correspondant au détail modifié
+    
+        return redirect()->route('detail_devis.show', ['clientId' => $clientId])->with('success', 'Le détail de devis a été mis à jour avec succès.');
+    }      
     
     public function show($clientId)
     {
@@ -78,11 +82,11 @@ class DetailDevisController extends Controller
     public function destroy($id)
     {
         $detail_devis = DetailDevis::findOrFail($id);
+        $clientId = $detail_devis->id_client; // Obtenez l'ID du client correspondant au détail supprimé
         $detail_devis->delete();
-
-        return redirect()->route('devis.index')
-            ->with('success', 'Le detail_devis a été supprimé avec succès.');
-    }
+    
+        return redirect()->route('detail_devis.show', ['clientId' => $clientId])->with('success', 'Le détail de devis a été supprimé avec succès.');
+    }    
 
     public function devis($clientId)
     {

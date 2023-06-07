@@ -2,21 +2,26 @@
 
 namespace App\Models;
 
-use App\Models\Fournisseur;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Fournisseur extends Model
 {
     use HasFactory;
+
     protected $fillable=[
         'nom',
         'adresse',
         'tel',
     ];
     
-    public function fournisseur()
+    public function bls()
     {
-        return $this->belongsTo(Fournisseur::class, 'id_fournisseur');
+        return $this->hasMany(Bl::class, 'id_fournisseur');
+    }
+
+    public function detailBls()
+    {
+        return $this->hasMany(DetailBl::class, 'id_fournisseur');
     }
 }

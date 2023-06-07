@@ -93,7 +93,7 @@
                         <tr id="tableChequeRow" data-date="{{ $reglement->date }}">
                             <td id="table">{{ $reglement->num }}</td>
                             <td id="table">{{ $reglement->montant }}</td>
-                            <td id="table">{{ \Carbon\Carbon::parse($reglement->date)->format('d/m/Y') }}</td>
+                            <td id="table">{{$reglement->date}}</td>
                             <td id="table">{{ $reglement->type }}</td>
                             <td id="table">{{ $reglement->fournisseur->nom }}</td>
                             <td id="table">
@@ -139,7 +139,7 @@
                         <tr id="tableEffetRow" data-date="{{ $reglement->date }}">
                             <td id="table">{{ $reglement->num }}</td>
                             <td id="table">{{ $reglement->montant }}</td>
-                            <td id="table">{{ \Carbon\Carbon::parse($reglement->date)->format('d/m/Y') }}</td>
+                            <td id="table">{{$reglement->date}}</td>
                             <td id="table">{{ $reglement->type }}</td>
                             <td id="table">{{ $reglement->fournisseur->nom }}</td>
                             <td id="table">
@@ -186,7 +186,7 @@
                         <tr>
                             <td id="table">{{ $reglement->num }}</td>
                             <td id="table">{{ $reglement->montant }}</td>
-                            <td id="table">{{ \Carbon\Carbon::parse($reglement->date)->format('d/m/Y') }}</td>
+                            <td id="table">{{$reglement->date}}</td>
                             <td id="table">{{ $reglement->type }}</td>
                             <td id="table">{{ $reglement->fournisseur->nom }}</td>
                             <td id="table">
