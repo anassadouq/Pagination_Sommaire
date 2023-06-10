@@ -84,7 +84,6 @@
     $(document).ready(function() {
         $('#myTable').DataTable( {
             dom: 'Blfrtip',
-            searching: false,
             lengthChange: false, // disable length change dropdown
             buttons: [{
                 extend: 'collection',

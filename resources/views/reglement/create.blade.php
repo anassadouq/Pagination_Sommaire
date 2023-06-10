@@ -36,6 +36,7 @@
 					<td>
 						<input type="radio" name="type" value="Chèque" required class="my-4"> Chèque
 						<input type="radio" name="type" value="Effet" required class="my-4"> Effet
+						<input type="radio" name="type" value="Virement" required class="my-4"> Virement
 					</td>
 				</tr>
 				<tr>

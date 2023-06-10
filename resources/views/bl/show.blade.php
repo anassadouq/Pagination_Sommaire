@@ -40,7 +40,7 @@
             </thead>
             <tbody>
                 @foreach ($bls as $bl)
-                    @if($bl->type == "Facture")
+                    @if($bl->type == "Facture" && $bl->regler == "Non")
                         <tr>
                             <td>{{ \Carbon\Carbon::parse($bl->date)->format('d/m/Y') }}</td>
                             <td>{{ $bl->num }}</td>
@@ -81,7 +81,7 @@
             </thead>
             <tbody>
                 @foreach ($bls as $bl)
-                    @if($bl->type == "BL")
+                    @if($bl->type == "BL" && $bl->regler == "Non")
                         <tr>
                             <td>{{ \Carbon\Carbon::parse($bl->date)->format('d/m/Y') }}</td>
                             <td>{{ $bl->num }}</td>
@@ -106,6 +106,45 @@
             </tbody>
         </table>
 
+        <h2 style="font-weight:bold">Facture & BL Régler</h2>
+        <table class="text-center my-3" id="regler">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Num</th>
+                    <th>Type</th>
+                    <th>TVA</th>
+                    <th>Régler</th>
+                    <th>Show</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($bls as $bl)
+                    @if($bl->regler == "Oui")
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($bl->date)->format('d/m/Y') }}</td>
+                            <td>{{ $bl->num }}</td>
+                            <td>{{ $bl->type }}</td>
+                            <td>{{ $bl->tva }}%</td>
+                            <td>{{ $bl->regler }}</td>
+                            <td>
+                                <a href="{{ route('detail_bl.show', $bl->id) }}">
+                                    <span class="material-symbols-outlined">ads_click</span>
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{{ route('bl.destroy', $bl['id']) }}" method="POST" id="deleteForm{{ $bl['id'] }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">Modifier</a>                                        <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">Supprimer</button> 
+                                </form>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+            </tbody>
+        </table>
         
     </div>
 
@@ -143,6 +182,20 @@
     <script>
         $(document).ready(function() {
             $('#designations2').DataTable( {
+                dom: 'Blfrtip',
+                lengthChange: false, // disable length change dropdown
+                paging: false, // disable pagination
+                buttons: [],
+                language: {
+                    info: "", // hide "Showing" text
+                    infoEmpty: "" // hide "Showing 0 to 0 of 0 entries" text
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#regler').DataTable( {
                 dom: 'Blfrtip',
                 lengthChange: false, // disable length change dropdown
                 paging: false, // disable pagination

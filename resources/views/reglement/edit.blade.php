@@ -26,7 +26,9 @@
             <tr>
                 <td><b>Type</b></td>
                 <td> : 
-                    <input type="type" name="type" value="{{ $reglement->type }}" class="my-4">
+                    <input type="radio" name="type" value="Effet" class="my-4">Effet
+                    <input type="radio" name="type" value="Chèque" class="my-4">Chèque
+                    <input type="radio" name="type" value="Virement" class="my-4">Virement
                 </td>
             </tr>
             <tr>

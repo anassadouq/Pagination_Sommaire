@@ -72,6 +72,7 @@
         @php
             $totalCheque = 0;
             $totalEffet = 0;
+            $totalVirement = 0;
             $totalRegler = 0;
         @endphp
         <b style="font-size:30px">Chèque</b>
@@ -79,7 +80,7 @@
         <table width="100%" class="text-center" id="tableCheque">
             <thead>
                 <tr id="table">
-                    <th id="table">N° chèque</th>
+                    <th id="table">N° Chèque</th>
                     <th id="table">Montant</th>
                     <th id="table">Date</th>
                     <th id="table">Type</th>
@@ -168,6 +169,52 @@
             </tr>
         </table><br>
 
+        <b style="font-size:30px">Virement</b>
+        <table width="100%" class="text-center" id="tableVirement">
+            <thead>
+                <tr id="table">
+                    <th id="table">N° Virement</th>
+                    <th id="table">Montant</th>
+                    <th id="table">Date</th>
+                    <th id="table">Type</th>
+                    <th id="table">Fournisseur</th>
+                    <th id="table">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($reglements as $reglement)
+                    @if ($reglement->type === 'Virement' && $reglement->reglement ==='Non')
+                        <tr id="tableVirementRow" data-date="{{ $reglement->date }}">
+                            <td id="table">{{ $reglement->num }}</td>
+                            <td id="table">{{ $reglement->montant }}</td>
+                            <td id="table">{{$reglement->date}}</td>
+                            <td id="table">{{ $reglement->type }}</td>
+                            <td id="table">{{ $reglement->fournisseur->nom }}</td>
+                            <td id="table">
+                                <form action="{{ route('reglement.destroy', $reglement->id) }}" method="POST" id="deleteForm{{ $reglement->id }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
+                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @php
+                            $totalVirement += $reglement->montant;
+                        @endphp
+                    @endif
+                @endforeach
+            </tbody>
+        </table>
+        <table width="25%" class="text-center" id="table">
+            <tr id="table">
+                <th id="table">Totale</th>
+            </tr>
+            <tr id="table">
+                <td id="totalVirement" id="table">{{ $totalVirement }}</td>
+            </tr>
+        </table><br>
+
         <b style="font-size:30px">Chèque & Effet Régler</b>
         <table width="100%" class="text-center my-4" id="tableReglement">
             <thead>
@@ -222,10 +269,12 @@
             var autreCharge = parseFloat(document.getElementById('autreChargeInput').value) || 0;
             var totalCheque = 0;
             var totalEffet = 0;
+            var totalVirement = 0;
             var filterDateD = new Date(document.getElementById('filterDateDInput').value);
             var filterDateF = new Date(document.getElementById('filterDateFInput').value);
             var filteredCheques = document.querySelectorAll('#tableChequeRow[data-date]');
             var filteredEffets = document.querySelectorAll('#tableEffetRow[data-date]');
+            var filteredVirements = document.querySelectorAll('#tableVirementRow[data-date]');
 
             filteredCheques.forEach(function (cheque) {
                 var chequeDate = new Date(cheque.getAttribute('data-date'));
@@ -247,17 +296,30 @@
                 }
             });
 
-            var reste = (montantEncaisser + solde) - (totalCheque + totalEffet + autreCharge);
+            filteredVirements.forEach(function (virement) {
+                var virementDate = new Date(virement.getAttribute('data-date'));
+                if (virementDate >= filterDateD && virementDate <= filterDateF) {
+                    virement.style.display = 'table-row';
+                    totalVirement += parseFloat(virement.querySelector('td:nth-child(2)').textContent);
+                } else {
+                    virement.style.display = 'none';
+                }
+            });
+
+            var reste = (montantEncaisser + solde) - (totalCheque + totalEffet + totalVirement + autreCharge);
             document.getElementById('resteOutput').textContent = reste.toFixed(2);
 
             document.getElementById('totalCheque').textContent = totalCheque.toFixed(2);
             document.getElementById('totalEffet').textContent = totalEffet.toFixed(2);
+            document.getElementById('totalVirement').textContent = totalVirement.toFixed(2);
+
             var resteOutput = document.getElementById('resteOutput');
-            if (resteOutput.innerText > 0) {
+            resteOutput.classList.remove('text-light', 'bg-success', 'bg-danger');
+
+            if (reste > 0) {
                 resteOutput.classList.add('text-light');
                 resteOutput.classList.add('bg-success');
-            }
-            if (resteOutput.innerText < 0) {
+            } else if (reste < 0) {
                 resteOutput.classList.add('text-light');
                 resteOutput.classList.add('bg-danger');
             }
