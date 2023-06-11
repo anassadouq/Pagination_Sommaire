@@ -152,7 +152,7 @@
         @foreach ($details as $detail)
             <tr>
                 <td class="bg-secondary">DERRIERE</td>
-                @if($detail->image == "caisson2.png" || $detail->image == "caisson3.png"|| $detail->image == "caisson4.png"|| $detail->image == "caisson5.png"|| $detail->image == "caisson6(Haut).png"|| $detail->image == "caisson7(Haut).png"|| $detail->image == "caisson8(Haut).png"|| $detail->image == "colonne1.png"|| $detail->image == "colonne2.png")
+                @if($detail->image == "caisson2.png" || $detail->image == "caisson3.png"|| $detail->image == "caisson4.png"|| $detail->image == "caisson5.png"|| $detail->image == "caisson6(Haut).png"|| $detail->image == "caisson7(Haut).png"|| $detail->image == "caisson8(Haut).png"|| $detail->image == "colonne2.png")
                     <td>{{$detail->hauteur - $client->eppMat}}</td>
                     <td>{{$detail->largeur - $client->eppMat}}</td>
                     <td>{{$detail->qte}}</td>
