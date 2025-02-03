@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('salaire');
             $table->string('sexe');
             $table->date("dateEntree");
+            $table->string("active");
             $table->timestamps();
         });
     }

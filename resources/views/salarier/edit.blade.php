@@ -42,7 +42,14 @@
             <tr>
                 <td><b>Date Entrée</b></td>
                 <td> : <input type="date" id="t" name="dateEntree" value="{{ $salarier->dateEntree }}" class="my-3"></td> 
-                <td><input type="submit" class="btn btn-secondary mx-2" value="Modifier Salarié" href="{{ route('salarier.index') }}"></td>
+            </tr>
+            <tr>
+                <td><b>Active</b></td>
+                <td>
+                    : <input type="radio" name="active" value="Oui"> Oui
+                    : <input type="radio" name="active" value="Non"> Non
+                    <input type="submit" class="btn btn-secondary mx-2" value="Modifier Salarié" href="{{ route('salarier.index') }}">
+                </td>
             </tr>
         </table> 
     </center>

@@ -31,6 +31,7 @@ class SalarierController extends Controller
         $salarier->adresse = $request->adresse;
         $salarier->salaire = $request->salaire;
         $salarier->dateEntree = $request->dateEntree;
+        $salarier->active = $request->active;
 
         $salarier->save();
         return to_route('salarier.index');
