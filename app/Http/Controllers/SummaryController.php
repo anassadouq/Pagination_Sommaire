@@ -63,7 +63,6 @@ class SummaryController extends Controller
     {
         $summaries = Summary::all();
         $pdf = Pdf::loadView('summary.pdf', compact('summaries'));
-
         return $pdf->stream('summary.pdf');
     }
 }
